@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS profile (
   phone TEXT,
   bio TEXT,
   availability TEXT,
+  photo_base64 TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 

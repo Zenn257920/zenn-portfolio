@@ -37,7 +37,7 @@ export default function About({
           >
             <div className="relative h-64 overflow-hidden">
               <Image
-                src="/portrait.jpg"
+                src="/api/photo"
                 alt="Portrait of Kaung Htet Zan Thar"
                 fill
                 sizes="(max-width: 768px) 100vw, 320px"

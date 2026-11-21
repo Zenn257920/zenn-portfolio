@@ -116,7 +116,7 @@ export default function SideNav({ name }: { name: string }) {
         className="fixed left-1/2 top-3 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-line bg-white/95 px-4 py-2 text-sm font-semibold shadow-lg shadow-black/5 backdrop-blur dark:border-night-line dark:bg-night-card/95 dark:text-[#eaf2f8]"
       >
         <span className="relative h-6 w-6 shrink-0 overflow-hidden rounded-full">
-          <Image src="/portrait.jpg" alt="" fill sizes="24px" className="object-cover object-top" />
+          <Image src="/api/photo" alt="" fill sizes="24px" className="object-cover object-top" />
         </span>
         <span className="max-w-40 truncate">{name}</span>
         <span className="hidden sm:inline text-xs font-medium text-ink-soft dark:text-[#a9c3d8]">

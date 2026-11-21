@@ -27,7 +27,7 @@ export default async function ContactPage() {
                 <div className="relative overflow-hidden rounded-3xl border border-line bg-card shadow-sm dark:border-night-line dark:bg-night-card">
                   <div className="relative aspect-[432/394] w-full">
                     <Image
-                      src="/portrait.jpg"
+                      src="/api/photo"
                       alt="Portrait of Kaung Htet Zan Thar"
                       fill
                       sizes="(max-width: 768px) 100vw, 360px"

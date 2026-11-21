@@ -52,7 +52,7 @@ export default function HireMe({ profile, socials }: { profile: Profile; socials
             >
               <span className="absolute -top-10 left-7 block h-20 w-20 overflow-hidden rounded-full border-4 border-white shadow-lg dark:border-night-card">
                 <Image
-                  src="/portrait.jpg"
+                  src="/api/photo"
                   alt="Portrait of Kaung Htet Zan Thar"
                   fill
                   sizes="80px"

@@ -120,7 +120,7 @@ export default function Hero({ profile }: { profile: Profile }) {
             <span aria-hidden className="absolute -top-14 left-1/2 z-10 h-16 w-3 -translate-x-1/2 rotate-0 rounded-full bg-ink dark:bg-[#eaf2f8]" />
             <span aria-hidden className="absolute left-0 right-0 top-0 z-10 h-2 bg-accent" />
             <Image
-              src="/portrait.jpg"
+              src="/api/photo"
               alt="Portrait of Kaung Htet Zan Thar"
               fill
               priority
