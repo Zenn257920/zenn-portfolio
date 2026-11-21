@@ -31,6 +31,12 @@ const DETAILS: Record<string, { duration: string; tools: string[]; extra: string
     extra:
       "Forms that validate as you type, with clear errors and no lost input. Shared state stays predictable, so screens agree with each other instead of drifting apart.",
   },
+  "Reusable Components & Design Systems": {
+    duration: "1–3 weeks",
+    tools: ["React", "TypeScript", "Tailwind CSS", "Framer Motion"],
+    extra:
+      "Reusable components and consistent patterns keep a product coherent: the same building blocks, the same behaviour, everywhere. New screens get faster to build, and the whole product is easier to maintain.",
+  },
 };
 
 export default function Services({ services }: { services: Service[] }) {

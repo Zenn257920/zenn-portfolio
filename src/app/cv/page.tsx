@@ -66,6 +66,30 @@ export default async function CvPage() {
         </section>
         <section className="mt-8">
           <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-accent">
+            Services
+          </h2>
+          {data.services.map((s) => (
+            <div key={s.id} className="mt-3">
+              <p className="font-bold text-ink dark:text-[#eaf2f8]">{s.title}</p>
+              <p className="mt-1 text-sm leading-relaxed text-ink-soft dark:text-[#b7cddd]">
+                {s.description}
+              </p>
+            </div>
+          ))}
+        </section>
+        <section className="mt-8">
+          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-accent">
+            Contact
+          </h2>
+          {data.socials.map((s) => (
+            <p key={s.id} className="mt-2 text-sm text-ink-soft dark:text-[#b7cddd]">
+              <span className="font-bold text-ink dark:text-[#eaf2f8]">{s.platform}: </span>
+              {s.url}
+            </p>
+          ))}
+        </section>
+        <section className="mt-8">
+          <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-accent">
             Skills
           </h2>
           {[...grouped.entries()].map(([cat, names]) => (

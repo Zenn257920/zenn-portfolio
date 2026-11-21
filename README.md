@@ -23,10 +23,10 @@ The data lives in Neon, project **kaung-portfolio**, database **neondb**
 | profile | 1 | Name, title, location, email, phone, bio |
 | skills | 27 | Grouped by category (Frontend, Frameworks, Styling, …) |
 | experience | 2 | Innovix Solutions — Junior Frontend Developer, Frontend Developer Intern |
-| projects | 2 | Core Insurance System, Customer Care Admin Panel |
-| services | 4 | Frontend Development, Responsive UI, API Integration, Forms & State |
+| projects | 3 | Core Insurance System, Customer Care Admin Panel, Personal Portfolio |
+| services | 5 | Frontend Development, Responsive UI, API Integration, Forms & State, Reusable Components |
 | education | 1 | B.C.Sc., University of Computer Studies, Magway (expected Feb 2027) |
-| socials | 1 | Email |
+| socials | 2 | Email, GitHub (@Zenn257920) |
 
 The site reads these tables server-side live on every request
 (`src/lib/neon.ts`, `dynamic = "force-dynamic"`, `revalidate = 0`). When `DATABASE_URL` is not set,

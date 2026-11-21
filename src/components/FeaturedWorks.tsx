@@ -4,7 +4,15 @@ import { motion } from "framer-motion";
 import type { Project } from "@/lib/types";
 import { SectionHeading, stagger, fadeUp } from "@/components/Reveal";
 
-export function DashboardMock({ title, variant = 0 }: { title: string; variant?: number }) {
+export function DashboardMock({
+  title,
+  variant = 0,
+  stackLabel = "React + TypeScript",
+}: {
+  title: string;
+  variant?: number;
+  stackLabel?: string;
+}) {
   const bars = variant === 1 ? [42, 78, 58, 90, 64] : [68, 92, 47, 80, 55];
   return (
     <div aria-hidden className="relative overflow-hidden rounded-2xl border border-line bg-cream-deep p-3 dark:border-night-line dark:bg-night">
@@ -33,16 +41,25 @@ export function DashboardMock({ title, variant = 0 }: { title: string; variant?:
         ))}
         <div className="col-span-3 flex items-center justify-between rounded-lg bg-cream px-3 py-2 dark:bg-night">
           <span className="font-mono text-[11px] text-ink-soft dark:text-[#a9c3d8]">● Live data</span>
-          <span className="font-mono text-[11px] font-semibold text-accent">React + TypeScript</span>
+          <span className="font-mono text-[11px] font-semibold text-accent">{stackLabel}</span>
         </div>
       </div>
     </div>
   );
 }
 
+// One-line outcome per project, keyed by title — the description and
+// highlight come from the data (Neon / fallback snapshot).
+const OUTCOMES: Record<string, string> = {
+  "Core Insurance System":
+    "Insurance workflows, rebuilt as responsive screens that stay fast and easy to use.",
+  "Customer Care Admin Panel":
+    "Support teams get the data they need — retrieved, submitted and managed through the API.",
+  "Personal Portfolio":
+    "This site itself — live data from Neon PostgreSQL, deployed on Vercel, source on GitHub.",
+};
+
 export default function FeaturedWorks({ projects }: { projects: Project[] }) {
-  const first = projects[0];
-  const second = projects[1];
   return (
     <section id="works" className="scroll-mt-24 py-14 md:py-20">
       <div className="mx-auto max-w-[980px] px-5 md:px-8">
@@ -54,74 +71,70 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
           viewport={{ once: true, margin: "-60px" }}
           className="space-y-5"
         >
-          {first ? (
-            <motion.article
-              variants={fadeUp}
-              whileHover={{ y: -4 }}
-              className="group grid overflow-hidden rounded-3xl border border-line bg-card shadow-sm md:grid-cols-2 dark:border-night-line dark:bg-night-card"
-            >
+          {projects.map((p, i) => {
+            const reversed = i % 2 === 1;
+            const tech = (p.tech ?? "")
+              .split(",")
+              .map((t) => t.trim())
+              .filter(Boolean);
+            const stackLabel = tech.slice(0, 2).join(" + ") || "React + TypeScript";
+            const text = (
               <div className="p-6 md:p-8">
                 <div className="flex flex-wrap gap-2">
-                  <span className="rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-soft dark:bg-night dark:text-[#a9c3d8]">3 Months</span>
-                  <span className="rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-soft dark:bg-night dark:text-[#a9c3d8]">Frontend Developer</span>
+                  {tech.map((t) => (
+                    <span
+                      key={t}
+                      className="rounded-full bg-accent/10 px-3 py-1 font-mono text-xs font-semibold text-accent"
+                    >
+                      {t}
+                    </span>
+                  ))}
                 </div>
                 <h3 className="mt-4 font-display text-2xl font-bold text-ink transition-colors group-hover:text-accent md:text-3xl dark:text-[#eaf2f8]">
-                  {first.title}
+                  {p.title}
                 </h3>
                 <p className="mt-1 text-sm font-medium text-ink-soft dark:text-[#a9c3d8]">
-                  {first.period} · {first.role ?? "Frontend Developer"}
+                  {p.period} · {p.role ?? "Frontend Developer"}
                 </p>
                 <p className="mt-3 text-sm leading-relaxed text-ink-soft dark:text-[#b7cddd]">
-                  {first.description}
+                  {p.description}
                 </p>
                 <p className="mt-4 font-display text-base font-bold text-ink dark:text-[#eaf2f8]">
-                  {first.highlight}
+                  {p.highlight}
                 </p>
-                <p className="mt-2 text-sm text-ink-soft dark:text-[#a9c3d8]">
-                  Insurance workflows, rebuilt as responsive screens that stay
-                  fast and easy to use.
-                </p>
+                {OUTCOMES[p.title] ? (
+                  <p className="mt-2 text-sm text-ink-soft dark:text-[#a9c3d8]">
+                    {OUTCOMES[p.title]}
+                  </p>
+                ) : null}
               </div>
-              <div className="p-4 md:p-6 md:pl-0">
-                <DashboardMock title={first.title} variant={0} />
+            );
+            const mock = (
+              <div className={`p-4 md:p-6 ${reversed ? "md:pr-0" : "md:pl-0"}`}>
+                <DashboardMock title={p.title} variant={i % 2} stackLabel={stackLabel} />
               </div>
-            </motion.article>
-          ) : null}
-
-          {second ? (
-            <motion.article
-              variants={fadeUp}
-              whileHover={{ y: -4 }}
-              className="group grid overflow-hidden rounded-3xl border border-line bg-card shadow-sm md:grid-cols-2 dark:border-night-line dark:bg-night-card"
-            >
-              <div className="order-2 p-4 md:order-1 md:p-6 md:pr-0">
-                <DashboardMock title={second.title} variant={1} />
-              </div>
-              <div className="order-1 p-6 md:order-2 md:p-8">
-                <div className="flex flex-wrap gap-2">
-                  <span className="rounded-full bg-accent/10 px-3 py-1 font-mono text-xs font-semibold text-accent">React</span>
-                  <span className="rounded-full bg-accent/10 px-3 py-1 font-mono text-xs font-semibold text-accent">TypeScript</span>
-                  <span className="rounded-full bg-accent/10 px-3 py-1 font-mono text-xs font-semibold text-accent">REST APIs</span>
-                </div>
-                <h3 className="mt-4 font-display text-2xl font-bold text-ink transition-colors group-hover:text-accent md:text-3xl dark:text-[#eaf2f8]">
-                  {second.title}
-                </h3>
-                <p className="mt-1 text-sm font-medium text-ink-soft dark:text-[#a9c3d8]">
-                  {second.period} · {second.role ?? "Frontend Developer"}
-                </p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft dark:text-[#b7cddd]">
-                  {second.description}
-                </p>
-                <p className="mt-4 font-display text-base font-bold text-ink dark:text-[#eaf2f8]">
-                  {second.highlight}
-                </p>
-                <p className="mt-2 text-sm text-ink-soft dark:text-[#a9c3d8]">
-                  Support teams get the data they need — retrieved, submitted
-                  and managed through the API.
-                </p>
-              </div>
-            </motion.article>
-          ) : null}
+            );
+            return (
+              <motion.article
+                key={p.id}
+                variants={fadeUp}
+                whileHover={{ y: -4 }}
+                className="group grid overflow-hidden rounded-3xl border border-line bg-card shadow-sm md:grid-cols-2 dark:border-night-line dark:bg-night-card"
+              >
+                {reversed ? (
+                  <>
+                    <div className="order-2 md:order-1">{mock}</div>
+                    <div className="order-1 md:order-2">{text}</div>
+                  </>
+                ) : (
+                  <>
+                    {text}
+                    {mock}
+                  </>
+                )}
+              </motion.article>
+            );
+          })}
         </motion.div>
       </div>
     </section>

@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
-import type { Profile } from "@/lib/types";
+import type { Profile, Social } from "@/lib/types";
 import { Reveal, SectionHeading, stagger, fadeUp } from "@/components/Reveal";
 
 function YangonClock() {
@@ -35,7 +35,7 @@ function YangonClock() {
   );
 }
 
-export default function HireMe({ profile }: { profile: Profile }) {
+export default function HireMe({ profile, socials }: { profile: Profile; socials: Social[] }) {
   return (
     <section id="contact" className="scroll-mt-24 py-14 md:py-20">
       <div className="mx-auto max-w-[980px] px-5 md:px-8">
@@ -92,9 +92,9 @@ export default function HireMe({ profile }: { profile: Profile }) {
                 Let&apos;s work together
               </motion.h3>
               <motion.p variants={fadeUp} className="mt-3 leading-relaxed text-cream/75">
-                Frontend development, responsive UI, API integration, and forms
-                &amp; state management — built with React, Next.js and
-                TypeScript.
+                Frontend development, responsive UI, API integration, forms
+                &amp; state management, and reusable components — built with
+                React, Next.js and TypeScript.
               </motion.p>
               <motion.div variants={fadeUp} className="mt-5 space-y-3">
                 {[
@@ -149,20 +149,21 @@ export default function HireMe({ profile }: { profile: Profile }) {
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             <div className="flex flex-wrap items-center gap-3">
-              <a
-                href="https://github.com/Zenn257920"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-line bg-card px-5 py-2.5 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
-              >
-                GitHub · @Zenn257920 ↗
-              </a>
-              <a
-                href={`mailto:${profile.email ?? ""}`}
-                className="rounded-full border border-line bg-card px-5 py-2.5 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
-              >
-                Email me ↗
-              </a>
+              {socials.map((s) => (
+                <a
+                  key={s.id}
+                  href={s.url}
+                  target={s.url.startsWith("mailto:") ? undefined : "_blank"}
+                  rel="noreferrer"
+                  className="rounded-full border border-line bg-card px-5 py-2.5 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
+                >
+                  {s.platform === "GitHub"
+                    ? "GitHub · @Zenn257920 ↗"
+                    : s.platform === "Email"
+                      ? "Email me ↗"
+                      : `${s.platform} ↗`}
+                </a>
+              ))}
             </div>
             <YangonClock />
           </div>

@@ -28,7 +28,7 @@ export default async function Home() {
           education={data.education}
         />
         <Services services={data.services} />
-        <HireMe profile={profile} />
+        <HireMe profile={profile} socials={data.socials} />
       </main>
     </div>
   );
