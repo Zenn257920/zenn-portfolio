@@ -28,8 +28,8 @@ The data lives in Neon, project **kaung-portfolio**, database **neondb**
 | education | 1 | B.C.Sc., University of Computer Studies, Magway (expected Feb 2027) |
 | socials | 1 | Email |
 
-The site reads these tables server-side on every revalidation
-(`src/lib/neon.ts`, `revalidate = 86400`). When `DATABASE_URL` is not set,
+The site reads these tables server-side live on every request
+(`src/lib/neon.ts`, `dynamic = "force-dynamic"`, `revalidate = 0`). When `DATABASE_URL` is not set,
 it falls back to the embedded snapshot in `src/data/portfolio.ts`, so the
 site still builds and renders without a database.
 
@@ -76,8 +76,10 @@ npm start
 1. Import this repository in Vercel.
 2. Add the `DATABASE_URL` environment variable (the pooled Neon
    connection string).
-3. Deploy. The site revalidates the Neon data once a day; redeploy or
-   revalidate to pick up edits sooner.
+3. Deploy. The site fetches the Neon data live on every request, so
+   edits in Neon show up immediately — but only when `DATABASE_URL` is
+   set as an environment variable in Vercel; without it the site shows
+   the embedded snapshot.
 
 ## Motion notes
 

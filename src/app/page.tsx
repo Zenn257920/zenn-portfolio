@@ -7,7 +7,9 @@ import StacksExperience from "@/components/StacksExperience";
 import Services from "@/components/Services";
 import HireMe from "@/components/HireMe";
 
-export const revalidate = 86400; // refresh from Neon once a day
+// Live from Neon on every request — no caching.
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function Home() {
   const data = await getPortfolio();
