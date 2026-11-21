@@ -4,13 +4,41 @@ import { AnimatePresence, motion } from "framer-motion";
 import { useState } from "react";
 import type { Service } from "@/lib/types";
 import { SectionHeading, stagger, fadeUp } from "@/components/Reveal";
+import { DashboardMock } from "@/components/FeaturedWorks";
+
+const DETAILS: Record<string, { duration: string; tools: string[]; extra: string }> = {
+  "Frontend Development": {
+    duration: "1–3 weeks",
+    tools: ["React", "Next.js", "TypeScript"],
+    extra:
+      "I build the full frontend — components, pages and routing — so the product works end to end, not just on one screen. Reusable components keep the codebase easy to change later.",
+  },
+  "Responsive UI Development": {
+    duration: "1–2 weeks",
+    tools: ["Tailwind CSS", "Bootstrap", "Material UI", "DaisyUI", "Framer Motion"],
+    extra:
+      "Interfaces that hold up on phones, tablets and desktops, with motion that guides attention instead of getting in the way. I check layouts at real sizes, not just on my own screen.",
+  },
+  "API Integration": {
+    duration: "1–2 weeks",
+    tools: ["REST APIs", "Axios", "TypeScript"],
+    extra:
+      "I connect the frontend to real data: fetching lists, submitting forms, handling loading and error states, and keeping the UI in sync with what the server returns.",
+  },
+  "Forms & State Management": {
+    duration: "1–2 weeks",
+    tools: ["React Hook Form", "Zod", "Redux Toolkit", "Context API"],
+    extra:
+      "Forms that validate as you type, with clear errors and no lost input. Shared state stays predictable, so screens agree with each other instead of drifting apart.",
+  },
+};
 
 export default function Services({ services }: { services: Service[] }) {
   const [open, setOpen] = useState<number | null>(0);
   return (
     <section id="services" className="scroll-mt-24 py-14 md:py-20">
-      <div className="mx-auto max-w-5xl px-5 md:px-8">
-        <SectionHeading index="04" label="Services I provide" title="I can help you with these things" />
+      <div className="mx-auto max-w-[980px] px-5 md:px-8">
+        <SectionHeading label="Services I provide" title="I can help you with these things" />
         <motion.div
           variants={stagger}
           initial="hidden"
@@ -20,6 +48,7 @@ export default function Services({ services }: { services: Service[] }) {
         >
           {services.map((s, i) => {
             const isOpen = open === i;
+            const d = DETAILS[s.title] ?? { duration: "1–2 weeks", tools: [], extra: "" };
             return (
               <motion.div
                 key={s.id}
@@ -43,6 +72,9 @@ export default function Services({ services }: { services: Service[] }) {
                   <span className="flex-1 font-display text-xl font-bold text-ink md:text-2xl dark:text-[#f3ede0]">
                     {s.title}
                   </span>
+                  <span className="hidden rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-soft sm:inline dark:bg-night dark:text-[#b8ad97]">
+                    {d.duration}
+                  </span>
                   <motion.span
                     animate={{ rotate: isOpen ? 45 : 0 }}
                     transition={{ type: "spring", stiffness: 300, damping: 22 }}
@@ -65,9 +97,34 @@ export default function Services({ services }: { services: Service[] }) {
                       transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                       className="overflow-hidden"
                     >
-                      <p className="px-6 pb-6 pl-[4.25rem] text-sm leading-relaxed text-ink-soft md:px-8 md:pl-[5.25rem] dark:text-[#c9bda6]">
-                        {s.description}
-                      </p>
+                      <div className="grid gap-6 px-6 pb-6 md:grid-cols-[1fr_200px] md:px-8">
+                        <div>
+                          <p className="text-sm leading-relaxed text-ink-soft dark:text-[#c9bda6]">
+                            {s.description}
+                          </p>
+                          {d.extra ? (
+                            <p className="mt-3 text-sm leading-relaxed text-ink-soft dark:text-[#c9bda6]">
+                              {d.extra}
+                            </p>
+                          ) : null}
+                          <p className="mt-4 font-mono text-xs font-bold uppercase tracking-widest text-ink-soft dark:text-[#b8ad97]">
+                            Typical timeline · {d.duration}
+                          </p>
+                          <div className="mt-3 flex flex-wrap gap-2">
+                            {d.tools.map((t) => (
+                              <span
+                                key={t}
+                                className="rounded-full border border-line bg-cream px-3 py-1 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#f3ede0]"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="hidden rotate-2 md:block">
+                          <DashboardMock title={s.title} variant={i % 2} />
+                        </div>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>

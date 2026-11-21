@@ -136,7 +136,7 @@ export const fallbackPortfolio: PortfolioData = {
     {
       "id": 20,
       "category": "Tools",
-      "name": "Postgre",
+      "name": "PostgreSQL",
       "sort_order": 19
     },
     {

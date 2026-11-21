@@ -17,7 +17,8 @@ export default async function Home() {
   return (
     <div className="dot-grid min-h-screen">
       <SideNav name={profile.name} />
-      <main className="lg:pl-16">
+      {/* Central bordered column, ~980px wide, like the reference */}
+      <main className="mx-auto min-h-screen w-full max-w-[980px] border-x border-line bg-cream shadow-[0_0_40px_rgba(0,0,0,0.04)] dark:border-night-line dark:bg-night">
         <Hero profile={profile} />
         <About profile={profile} skills={data.skills} education={data.education} />
         <FeaturedWorks projects={data.projects} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
+import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 const LINKS = [
@@ -10,6 +10,13 @@ const LINKS = [
   { id: "experience", label: "Experience", icon: "▤" },
   { id: "services", label: "Services", icon: "✦" },
   { id: "contact", label: "Contact", icon: "✉" },
+];
+
+const BOTTOM_LINKS = [
+  { id: "about", label: "About" },
+  { id: "works", label: "Work" },
+  { id: "services", label: "Services" },
+  { id: "contact", label: "Contact" },
 ];
 
 export function ThemeToggle() {
@@ -43,8 +50,6 @@ export function ThemeToggle() {
 export default function SideNav({ name }: { name: string }) {
   const [active, setActive] = useState("home");
   const [scrolled, setScrolled] = useState(false);
-  const { scrollYProgress } = useScroll();
-  const progress = useSpring(scrollYProgress, { stiffness: 120, damping: 26 });
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -68,19 +73,13 @@ export default function SideNav({ name }: { name: string }) {
 
   return (
     <>
-      {/* Scroll progress */}
-      <motion.div
-        aria-hidden
-        style={{ scaleX: progress }}
-        className="fixed inset-x-0 top-0 z-50 h-1 origin-left bg-accent"
-      />
       {/* Left icon rail — desktop */}
       <motion.nav
         initial={{ x: -60, opacity: 0 }}
         animate={{ x: 0, opacity: 1 }}
         transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
         aria-label="Sections"
-        className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-2 rounded-full border border-line bg-card/90 p-2 shadow-lg shadow-black/5 backdrop-blur lg:flex dark:border-night-line dark:bg-night-card/90"
+        className="fixed left-4 top-1/2 z-40 hidden -translate-y-1/2 flex-col items-center gap-2 rounded-full border border-line bg-white p-2 shadow-lg shadow-black/5 dark:border-night-line dark:bg-night-card"
       >
         {LINKS.map((l) => (
           <motion.a
@@ -103,7 +102,7 @@ export default function SideNav({ name }: { name: string }) {
         <ThemeToggle />
       </motion.nav>
 
-      {/* Floating name pill — appears after scrolling */}
+      {/* Floating ID pill — top centre, appears after scrolling */}
       <motion.a
         href="#home"
         initial={false}
@@ -113,12 +112,15 @@ export default function SideNav({ name }: { name: string }) {
           pointerEvents: scrolled ? "auto" : "none",
         }}
         transition={{ duration: 0.35 }}
-        className="fixed left-1/2 top-3 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-line bg-card/95 px-4 py-2 text-sm font-semibold shadow-lg shadow-black/5 backdrop-blur lg:left-auto lg:right-6 lg:translate-x-0 dark:border-night-line dark:bg-night-card/95 dark:text-[#f3ede0]"
+        className="fixed left-1/2 top-3 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-line bg-white/95 px-4 py-2 text-sm font-semibold shadow-lg shadow-black/5 backdrop-blur dark:border-night-line dark:bg-night-card/95 dark:text-[#f3ede0]"
       >
         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-[11px] font-bold text-white">
           KT
         </span>
         <span className="max-w-40 truncate">{name}</span>
+        <span className="hidden sm:inline text-xs font-medium text-ink-soft dark:text-[#b8ad97]">
+          Frontend Developer
+        </span>
         <span className="flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
@@ -128,13 +130,42 @@ export default function SideNav({ name }: { name: string }) {
         </span>
       </motion.a>
 
+      {/* Floating bottom-centre pill nav — desktop, appears on scroll */}
+      <motion.nav
+        aria-label="Sections"
+        initial={false}
+        animate={{
+          opacity: scrolled ? 1 : 0,
+          y: scrolled ? 0 : 16,
+          pointerEvents: scrolled ? "auto" : "none",
+        }}
+        transition={{ duration: 0.35 }}
+        className="fixed bottom-4 left-1/2 z-40 hidden -translate-x-1/2 items-center gap-1 rounded-full border border-line bg-white/95 p-1.5 shadow-xl shadow-black/10 backdrop-blur lg:flex dark:border-night-line dark:bg-night-card/95"
+      >
+        {BOTTOM_LINKS.map((l) => (
+          <a
+            key={l.id}
+            href={`#${l.id}`}
+            className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
+              active === l.id
+                ? "bg-accent text-white"
+                : "text-ink-soft hover:text-ink dark:text-[#b8ad97] dark:hover:text-[#f3ede0]"
+            }`}
+          >
+            {l.label}
+          </a>
+        ))}
+        <span aria-hidden className="mx-1 h-6 w-px bg-line dark:bg-night-line" />
+        <ThemeToggle />
+      </motion.nav>
+
       {/* Mobile bottom nav */}
       <motion.nav
         initial={{ y: 60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
         aria-label="Sections"
-        className="fixed inset-x-3 bottom-3 z-40 flex items-center justify-around rounded-full border border-line bg-card/95 p-1.5 shadow-xl shadow-black/10 backdrop-blur lg:hidden dark:border-night-line dark:bg-night-card/95"
+        className="fixed inset-x-3 bottom-3 z-40 flex items-center justify-around rounded-full border border-line bg-white/95 p-1.5 shadow-xl shadow-black/10 backdrop-blur lg:hidden dark:border-night-line dark:bg-night-card/95"
       >
         {LINKS.map((l) => (
           <a

@@ -27,7 +27,7 @@ INSERT INTO skills (id, category, name, sort_order) VALUES
 (17, 'Forms & Validation', 'Zod', 16),
 (18, 'Tools', 'Visual Studio Code', 17),
 (19, 'Tools', 'Git Bash', 18),
-(20, 'Tools', 'Postgre', 19),
+(20, 'Tools', 'PostgreSQL', 19),
 (21, 'Tools', 'Postman', 20),
 (22, 'Tools', 'Git', 21),
 (23, 'Tools', 'GitHub', 22),

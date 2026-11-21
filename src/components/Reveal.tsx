@@ -41,11 +41,9 @@ export function Reveal({
 }
 
 export function SectionHeading({
-  index,
   label,
   title,
 }: {
-  index: string;
   label: string;
   title: string;
 }) {
@@ -59,22 +57,16 @@ export function SectionHeading({
     >
       <motion.p
         variants={fadeUp}
-        className="font-mono text-xs tracking-widest text-accent uppercase"
+        className="text-sm font-semibold tracking-wide text-accent"
       >
         {"//"} {label}
       </motion.p>
       <motion.h2
         variants={fadeUp}
-        className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-4xl md:text-5xl dark:text-[#f3ede0]"
+        className="mt-3 font-display text-4xl font-bold tracking-tight text-ink md:text-[40px] md:leading-[1.1] dark:text-[#f3ede0]"
       >
         {title}
       </motion.h2>
-      <motion.span
-        variants={fadeUp}
-        aria-hidden
-        className="mt-4 block h-1 w-12 rounded-full bg-accent"
-      />
-      <span className="sr-only">{index}</span>
     </motion.div>
   );
 }
