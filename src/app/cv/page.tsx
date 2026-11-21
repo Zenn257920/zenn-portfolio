@@ -23,18 +23,18 @@ export default async function CvPage() {
         <PrintButton />
       </div>
       <article className="rounded-3xl border border-line bg-card p-8 shadow-sm print:border-0 print:shadow-none dark:border-night-line dark:bg-night-card">
-        <h1 className="font-display text-4xl font-bold text-ink dark:text-[#f3ede0]">
+        <h1 className="font-display text-4xl font-bold text-ink dark:text-[#eaf2f8]">
           {profile.name}
         </h1>
         <p className="mt-1 text-lg font-semibold text-accent">{profile.title}</p>
-        <p className="mt-2 text-sm text-ink-soft dark:text-[#b8ad97]">
+        <p className="mt-2 text-sm text-ink-soft dark:text-[#a9c3d8]">
           {profile.email} · {profile.phone} · {profile.location}
         </p>
         <section className="mt-8">
           <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-accent">
             About
           </h2>
-          <p className="mt-2 leading-relaxed text-ink-soft dark:text-[#c9bda6]">{profile.bio}</p>
+          <p className="mt-2 leading-relaxed text-ink-soft dark:text-[#b7cddd]">{profile.bio}</p>
         </section>
         <section className="mt-8">
           <h2 className="font-mono text-xs font-bold uppercase tracking-widest text-accent">
@@ -42,10 +42,10 @@ export default async function CvPage() {
           </h2>
           {data.experience.map((e) => (
             <div key={e.id} className="mt-3">
-              <p className="font-bold text-ink dark:text-[#f3ede0]">
+              <p className="font-bold text-ink dark:text-[#eaf2f8]">
                 {e.role} — {e.company} ({e.duration})
               </p>
-              <p className="mt-1 text-sm leading-relaxed text-ink-soft dark:text-[#c9bda6]">
+              <p className="mt-1 text-sm leading-relaxed text-ink-soft dark:text-[#b7cddd]">
                 {e.description}
               </p>
             </div>
@@ -57,8 +57,8 @@ export default async function CvPage() {
           </h2>
           {data.projects.map((p) => (
             <div key={p.id} className="mt-3">
-              <p className="font-bold text-ink dark:text-[#f3ede0]">{p.title}</p>
-              <p className="mt-1 text-sm leading-relaxed text-ink-soft dark:text-[#c9bda6]">
+              <p className="font-bold text-ink dark:text-[#eaf2f8]">{p.title}</p>
+              <p className="mt-1 text-sm leading-relaxed text-ink-soft dark:text-[#b7cddd]">
                 {p.description}
               </p>
             </div>
@@ -69,8 +69,8 @@ export default async function CvPage() {
             Skills
           </h2>
           {[...grouped.entries()].map(([cat, names]) => (
-            <p key={cat} className="mt-2 text-sm text-ink-soft dark:text-[#c9bda6]">
-              <span className="font-bold text-ink dark:text-[#f3ede0]">{cat}: </span>
+            <p key={cat} className="mt-2 text-sm text-ink-soft dark:text-[#b7cddd]">
+              <span className="font-bold text-ink dark:text-[#eaf2f8]">{cat}: </span>
               {names.join(", ")}
             </p>
           ))}
@@ -80,8 +80,8 @@ export default async function CvPage() {
             Education
           </h2>
           {data.education.map((e) => (
-            <p key={e.id} className="mt-2 text-sm text-ink-soft dark:text-[#c9bda6]">
-              <span className="font-bold text-ink dark:text-[#f3ede0]">
+            <p key={e.id} className="mt-2 text-sm text-ink-soft dark:text-[#b7cddd]">
+              <span className="font-bold text-ink dark:text-[#eaf2f8]">
                 {e.degree} — {e.school}
               </span>{" "}
               · {e.period}

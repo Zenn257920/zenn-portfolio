@@ -22,13 +22,13 @@ function YangonClock() {
   }, []);
   return (
     <div className="rounded-2xl border border-line bg-card p-4 dark:border-night-line dark:bg-night-card">
-      <p className="font-mono text-xs uppercase tracking-widest text-ink-soft dark:text-[#b8ad97]">
+      <p className="font-mono text-xs uppercase tracking-widest text-ink-soft dark:text-[#a9c3d8]">
         Local time · Yangon
       </p>
-      <p className="mt-1 font-display text-2xl font-bold tabular-nums text-ink dark:text-[#f3ede0]">
+      <p className="mt-1 font-display text-2xl font-bold tabular-nums text-ink dark:text-[#eaf2f8]">
         {now || "--:--:--"}
       </p>
-      <p className="mt-1 font-mono text-xs text-ink-soft dark:text-[#b8ad97]">
+      <p className="mt-1 font-mono text-xs text-ink-soft dark:text-[#a9c3d8]">
         Asia/Yangon · UTC+6:30
       </p>
     </div>
@@ -50,14 +50,14 @@ export default function HireMe({ profile }: { profile: Profile }) {
               className="rounded-3xl border border-line bg-card p-7 shadow-sm dark:border-night-line dark:bg-night-card"
             >
               <div className="flex items-start gap-4">
-                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-accent via-[#ff7a3d] to-[#ffb25e] font-display text-2xl font-bold text-white shadow-lg shadow-accent/30">
+                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-accent via-[#2a6ea6] to-[#6ea8d8] font-display text-2xl font-bold text-white shadow-lg shadow-accent/30">
                   KT
                 </span>
                 <div>
-                  <p className="font-display text-xl font-bold leading-tight text-ink dark:text-[#f3ede0]">
+                  <p className="font-display text-xl font-bold leading-tight text-ink dark:text-[#eaf2f8]">
                     {profile.name}
                   </p>
-                  <p className="mt-1 text-sm text-ink-soft dark:text-[#b8ad97]">
+                  <p className="mt-1 text-sm text-ink-soft dark:text-[#a9c3d8]">
                     Yangon, Myanmar
                   </p>
                   <p className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-cream px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-night dark:text-emerald-400">
@@ -65,15 +65,15 @@ export default function HireMe({ profile }: { profile: Profile }) {
                   </p>
                 </div>
               </div>
-              <p className="mt-5 leading-relaxed text-ink-soft dark:text-[#c9bda6]">
+              <p className="mt-5 leading-relaxed text-ink-soft dark:text-[#b7cddd]">
                 I care about craft, details, and building things people actually
                 enjoy using — responsive, reusable and user-friendly, with clean,
                 maintainable code.
               </p>
-              <h3 className="mt-6 font-display text-3xl font-bold text-ink dark:text-[#f3ede0]">
+              <h3 className="mt-6 font-display text-3xl font-bold text-ink dark:text-[#eaf2f8]">
                 Hire me today
               </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft dark:text-[#b8ad97]">
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft dark:text-[#a9c3d8]">
                 I take on a small number of projects at a time, so your work
                 always gets my full focus. Tell me about your product and
                 I&apos;ll get back to you.
@@ -141,10 +141,10 @@ export default function HireMe({ profile }: { profile: Profile }) {
 
         {/* Footer */}
         <footer className="mt-14 border-t border-line pt-10 pb-24 md:pb-10 dark:border-night-line">
-          <h3 className="font-display text-4xl font-bold tracking-tight text-ink md:text-[40px] dark:text-[#f3ede0]">
+          <h3 className="font-display text-4xl font-bold tracking-tight text-ink md:text-[40px] dark:text-[#eaf2f8]">
             Thank you for visiting
           </h3>
-          <p className="mt-3 font-display text-2xl italic text-ink-soft dark:text-[#b8ad97]">
+          <p className="mt-3 font-display text-2xl italic text-ink-soft dark:text-[#a9c3d8]">
             — Kaung Htet Zan Thar
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -153,20 +153,20 @@ export default function HireMe({ profile }: { profile: Profile }) {
                 href="https://github.com/Zenn257920"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-line bg-card px-5 py-2.5 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#f3ede0]"
+                className="rounded-full border border-line bg-card px-5 py-2.5 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
               >
                 GitHub · @Zenn257920 ↗
               </a>
               <a
                 href={`mailto:${profile.email ?? ""}`}
-                className="rounded-full border border-line bg-card px-5 py-2.5 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#f3ede0]"
+                className="rounded-full border border-line bg-card px-5 py-2.5 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
               >
                 Email me ↗
               </a>
             </div>
             <YangonClock />
           </div>
-          <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 text-sm text-ink-soft md:flex-row dark:border-night-line dark:text-[#b8ad97]">
+          <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 text-sm text-ink-soft md:flex-row dark:border-night-line dark:text-[#a9c3d8]">
             <p>© 2026 {profile.name}</p>
             <p className="font-mono text-xs">
               Built with Next.js, TypeScript &amp; Framer Motion · Data from Neon PostgreSQL

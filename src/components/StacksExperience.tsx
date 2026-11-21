@@ -6,23 +6,23 @@ import type { Education, Experience, Skill } from "@/lib/types";
 import { SectionHeading, stagger, fadeUp } from "@/components/Reveal";
 
 function ContributionGrid() {
-  // Deterministic pseudo-random shading, GitHub-style green.
+  // Deterministic pseudo-random shading, Ocean-blue shades.
   const cells = Array.from({ length: 7 * 26 }, (_, i) => {
     const v = (i * 2654435761) % 100;
     return v > 82 ? 4 : v > 62 ? 3 : v > 38 ? 2 : v > 16 ? 1 : 0;
   });
   const shades = [
     "bg-cream-deep dark:bg-night-line",
-    "bg-[#9be9a8] dark:bg-[#0e4429]",
-    "bg-[#40c463] dark:bg-[#006d32]",
-    "bg-[#30a14e] dark:bg-[#26a641]",
-    "bg-[#216e39] dark:bg-[#39d353]",
+    "bg-[#a9c3d8] dark:bg-[#1e3d5c]",
+    "bg-[#6ea8d8] dark:bg-[#2a6ea6]",
+    "bg-[#4a86b8] dark:bg-[#174a7c]",
+    "bg-[#174a7c] dark:bg-[#6ea8d8]",
   ];
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <p className="font-mono text-sm font-bold text-ink dark:text-[#f3ede0]">@Zenn257920</p>
-        <p className="font-mono text-xs text-ink-soft dark:text-[#b8ad97]">github.com/Zenn257920</p>
+        <p className="font-mono text-sm font-bold text-ink dark:text-[#eaf2f8]">@Zenn257920</p>
+        <p className="font-mono text-xs text-ink-soft dark:text-[#a9c3d8]">github.com/Zenn257920</p>
       </div>
       <div className="mt-3 overflow-x-auto pb-1">
         <div
@@ -42,7 +42,7 @@ function ContributionGrid() {
           ))}
         </div>
       </div>
-      <p className="mt-2 font-mono text-xs text-ink-soft dark:text-[#b8ad97]">
+      <p className="mt-2 font-mono text-xs text-ink-soft dark:text-[#a9c3d8]">
         Building, shipping and learning — week by week.
       </p>
     </div>
@@ -64,7 +64,7 @@ function MarqueeRow({ names, reverse = false }: { names: string[]; reverse?: boo
         {doubled.map((n, i) => (
           <span
             key={i}
-            className="rounded-full border border-line bg-cream px-3.5 py-1.5 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#f3ede0]"
+            className="rounded-full border border-line bg-cream px-3.5 py-1.5 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#eaf2f8]"
           >
             {n} <span className="text-accent">✦</span>
           </span>
@@ -140,7 +140,7 @@ export default function StacksExperience({
                       <motion.span
                         key={s.id}
                         whileHover={{ scale: 1.07, y: -2 }}
-                        className="rounded-full border border-line bg-cream px-3 py-1.5 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#f3ede0]"
+                        className="rounded-full border border-line bg-cream px-3 py-1.5 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#eaf2f8]"
                       >
                         {s.name}
                       </motion.span>
@@ -154,7 +154,7 @@ export default function StacksExperience({
           </motion.div>
         </motion.div>
 
-        {/* Timeline — orange line fills on scroll */}
+        {/* Timeline — ocean line fills on scroll */}
         <div ref={timelineRef} className="relative mt-10">
           <span aria-hidden className="absolute bottom-2 left-[19px] top-2 w-0.5 rounded-full bg-line md:left-[23px] dark:bg-night-line" />
           <motion.span
@@ -181,21 +181,21 @@ export default function StacksExperience({
                   </motion.span>
                   <div className="flex-1 rounded-3xl border border-line bg-card p-5 shadow-sm md:p-6 dark:border-night-line dark:bg-night-card">
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <h3 className="font-display text-xl font-bold text-ink dark:text-[#f3ede0]">
+                      <h3 className="font-display text-xl font-bold text-ink dark:text-[#eaf2f8]">
                         {e.company}
                       </h3>
-                      <span className="rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-soft dark:bg-night dark:text-[#b8ad97]">
+                      <span className="rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-soft dark:bg-night dark:text-[#a9c3d8]">
                         {e.duration}
                       </span>
                     </div>
                     <p className="mt-1 font-semibold text-accent">{e.role}</p>
-                    <p className="mt-3 font-display text-base font-bold leading-snug text-ink dark:text-[#f3ede0]">
+                    <p className="mt-3 font-display text-base font-bold leading-snug text-ink dark:text-[#eaf2f8]">
                       {h.headline}
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-soft dark:text-[#c9bda6]">
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft dark:text-[#b7cddd]">
                       {h.note} {e.description}
                     </p>
-                    <p className="mt-3 text-sm font-semibold text-ink dark:text-[#f3ede0]">
+                    <p className="mt-3 text-sm font-semibold text-ink dark:text-[#eaf2f8]">
                       {e.highlight}
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
@@ -206,7 +206,7 @@ export default function StacksExperience({
                         .map((t) => (
                           <span
                             key={t}
-                            className="rounded-full border border-line bg-cream px-3 py-1 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#f3ede0]"
+                            className="rounded-full border border-line bg-cream px-3 py-1 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#eaf2f8]"
                           >
                             {t}
                           </span>
@@ -220,21 +220,21 @@ export default function StacksExperience({
               <motion.li key={`edu-${ed.id}`} variants={fadeUp} className="relative flex gap-4 md:gap-6">
                 <motion.span
                   whileHover={{ scale: 1.15 }}
-                  className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-line bg-card font-display text-xs font-bold text-ink shadow-sm md:h-12 md:w-12 dark:border-night-line dark:bg-night-card dark:text-[#f3ede0]"
+                  className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-line bg-card font-display text-xs font-bold text-ink shadow-sm md:h-12 md:w-12 dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
                 >
                   UCS
                 </motion.span>
                 <div className="flex-1 rounded-3xl border border-line bg-card p-5 shadow-sm md:p-6 dark:border-night-line dark:bg-night-card">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <h3 className="font-display text-xl font-bold text-ink dark:text-[#f3ede0]">
+                    <h3 className="font-display text-xl font-bold text-ink dark:text-[#eaf2f8]">
                       {ed.school}
                     </h3>
-                    <span className="rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-soft dark:bg-night dark:text-[#b8ad97]">
+                    <span className="rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-soft dark:bg-night dark:text-[#a9c3d8]">
                       {ed.period}
                     </span>
                   </div>
                   <p className="mt-1 font-semibold text-accent">{ed.degree}</p>
-                  <p className="mt-3 font-display text-base font-bold leading-snug text-ink dark:text-[#f3ede0]">
+                  <p className="mt-3 font-display text-base font-bold leading-snug text-ink dark:text-[#eaf2f8]">
                     Studying computer science, building frontend skills alongside the degree.
                   </p>
                 </div>

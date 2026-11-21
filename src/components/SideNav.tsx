@@ -40,7 +40,7 @@ export function ThemeToggle() {
         }
       }}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-card text-lg text-ink shadow-sm transition-colors hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#f3ede0]"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-card text-lg text-ink shadow-sm transition-colors hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
     >
       {dark ? "☀" : "☾"}
     </motion.button>
@@ -92,7 +92,7 @@ export default function SideNav({ name }: { name: string }) {
             className={`flex h-10 w-10 items-center justify-center rounded-full text-base transition-colors ${
               active === l.id
                 ? "bg-accent text-white shadow-md shadow-accent/40"
-                : "text-ink-soft hover:bg-cream-deep hover:text-ink dark:text-[#b8ad97] dark:hover:bg-night-line dark:hover:text-[#f3ede0]"
+                : "text-ink-soft hover:bg-cream-deep hover:text-ink dark:text-[#a9c3d8] dark:hover:bg-night-line dark:hover:text-[#eaf2f8]"
             }`}
           >
             {l.icon}
@@ -112,13 +112,13 @@ export default function SideNav({ name }: { name: string }) {
           pointerEvents: scrolled ? "auto" : "none",
         }}
         transition={{ duration: 0.35 }}
-        className="fixed left-1/2 top-3 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-line bg-white/95 px-4 py-2 text-sm font-semibold shadow-lg shadow-black/5 backdrop-blur dark:border-night-line dark:bg-night-card/95 dark:text-[#f3ede0]"
+        className="fixed left-1/2 top-3 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-line bg-white/95 px-4 py-2 text-sm font-semibold shadow-lg shadow-black/5 backdrop-blur dark:border-night-line dark:bg-night-card/95 dark:text-[#eaf2f8]"
       >
         <span className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-[11px] font-bold text-white">
           KT
         </span>
         <span className="max-w-40 truncate">{name}</span>
-        <span className="hidden sm:inline text-xs font-medium text-ink-soft dark:text-[#b8ad97]">
+        <span className="hidden sm:inline text-xs font-medium text-ink-soft dark:text-[#a9c3d8]">
           Frontend Developer
         </span>
         <span className="flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
@@ -149,7 +149,7 @@ export default function SideNav({ name }: { name: string }) {
             className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
               active === l.id
                 ? "bg-accent text-white"
-                : "text-ink-soft hover:text-ink dark:text-[#b8ad97] dark:hover:text-[#f3ede0]"
+                : "text-ink-soft hover:text-ink dark:text-[#a9c3d8] dark:hover:text-[#eaf2f8]"
             }`}
           >
             {l.label}
@@ -175,7 +175,7 @@ export default function SideNav({ name }: { name: string }) {
             className={`flex h-10 w-10 items-center justify-center rounded-full text-base transition-colors ${
               active === l.id
                 ? "bg-accent text-white"
-                : "text-ink-soft dark:text-[#b8ad97]"
+                : "text-ink-soft dark:text-[#a9c3d8]"
             }`}
           >
             {l.icon}

@@ -8,7 +8,7 @@ PostgreSQL (serverless)**.
 The layout follows the Zolt portfolio reference
 (`https://zolt-portfolio.framer.website/`): dotted warm canvas, left icon
 nav, hero with a hanging ID badge, About bento, Featured Works, Stacks &
-Experience with an orange timeline, a numbered Services accordion, and a
+Experience with an ocean-blue timeline, a numbered Services accordion, and a
 Hire Me / contact closing — rebuilt with Framer Motion throughout
 (`whileInView` reveals, staggered entrances, spring hovers, an animated
 accordion, scroll-spy nav and a scroll progress bar).
