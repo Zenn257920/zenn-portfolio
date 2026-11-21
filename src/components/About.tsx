@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import type { Education, Profile, Skill } from "@/lib/types";
 import { SectionHeading, stagger, fadeUp } from "@/components/Reveal";
 
@@ -28,20 +29,20 @@ export default function About({
           viewport={{ once: true, margin: "-60px" }}
           className="grid gap-4 md:grid-cols-3"
         >
-          {/* Tall left card — bio + decorative gradient panel */}
+          {/* Tall left card — portrait photo on top, like Zolt's About photo */}
           <motion.article
             variants={fadeUp}
             whileHover={{ y: -4 }}
             className="overflow-hidden rounded-3xl border border-line bg-card shadow-sm md:row-span-2 dark:border-night-line dark:bg-night-card"
           >
-            <div aria-hidden className="relative h-36 bg-gradient-to-br from-accent via-[#2a6ea6] to-[#6ea8d8]">
-              <div className="absolute inset-0 opacity-25 [background-image:radial-gradient(#fff_1.2px,transparent_1.2px)] [background-size:18px_18px]" />
-              <span className="absolute bottom-4 left-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-white font-display text-xl font-bold text-accent shadow-lg">
-                KT
-              </span>
-              <span className="absolute right-5 top-5 rounded-full bg-white/90 px-3 py-1 text-xs font-semibold text-ink">
-                Yangon · UTC+6:30
-              </span>
+            <div className="relative h-64 overflow-hidden">
+              <Image
+                src="/portrait.jpg"
+                alt="Portrait of Kaung Htet Zan Thar"
+                fill
+                sizes="(max-width: 768px) 100vw, 320px"
+                className="object-cover object-top"
+              />
             </div>
             <div className="p-6">
               <p className="text-sm font-semibold text-accent">About me</p>

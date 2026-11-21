@@ -1,6 +1,7 @@
 "use client";
 
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Profile } from "@/lib/types";
 import { stagger, fadeUp } from "@/components/Reveal";
@@ -96,7 +97,7 @@ export default function Hero({ profile }: { profile: Profile }) {
               Download CV ↓
             </motion.a>
             <motion.a
-              href="#contact"
+              href="/contact"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-cream shadow-lg shadow-black/10 dark:bg-accent dark:text-white"
@@ -106,7 +107,8 @@ export default function Hero({ profile }: { profile: Profile }) {
           </motion.div>
         </div>
 
-        {/* Hanging ID badge — 220 x 280, black lanyard, ocean top stripe */}
+        {/* Hanging ID badge — 220 x 280, photo fills the card like Zolt's,
+            black lanyard, ocean top stripe, no text on the card */}
         <motion.div variants={fadeUp} className="mx-auto flex w-[220px] shrink-0 justify-center md:mx-0 md:justify-end">
           <motion.div
             initial={{ y: -18, rotate: 3 }}
@@ -115,25 +117,16 @@ export default function Hero({ profile }: { profile: Profile }) {
             whileHover={{ rotate: 0, y: -4 }}
             className="relative h-[280px] w-[220px] overflow-hidden rounded-3xl border border-line bg-white shadow-xl shadow-black/10 dark:border-night-line dark:bg-night-card"
           >
-            <span aria-hidden className="absolute -top-14 left-1/2 h-16 w-3 -translate-x-1/2 rotate-0 rounded-full bg-ink dark:bg-[#eaf2f8]" />
-            <span aria-hidden className="absolute left-0 right-0 top-0 h-2 bg-accent" />
-            <div className="flex h-full flex-col items-center px-5 pb-5 pt-8 text-center">
-              <span className="flex h-24 w-24 items-center justify-center rounded-2xl bg-gradient-to-br from-accent via-[#2a6ea6] to-[#6ea8d8] font-display text-4xl font-bold text-white shadow-lg shadow-accent/30">
-                KT
-              </span>
-              <p className="mt-4 font-display text-lg font-bold leading-tight text-ink dark:text-[#eaf2f8]">
-                {profile.name}
-              </p>
-              <p className="mt-1 text-xs font-medium uppercase tracking-widest text-ink-soft dark:text-[#a9c3d8]">
-                {profile.title}
-              </p>
-              <span className="mt-4 rounded-full bg-cream px-3 py-1 font-mono text-[11px] text-ink-soft dark:bg-night dark:text-[#a9c3d8]">
-                Yangon, Myanmar
-              </span>
-              <p className="mt-auto font-mono text-[11px] text-ink-soft dark:text-[#a9c3d8]">
-                @Zenn257920
-              </p>
-            </div>
+            <span aria-hidden className="absolute -top-14 left-1/2 z-10 h-16 w-3 -translate-x-1/2 rotate-0 rounded-full bg-ink dark:bg-[#eaf2f8]" />
+            <span aria-hidden className="absolute left-0 right-0 top-0 z-10 h-2 bg-accent" />
+            <Image
+              src="/portrait.jpg"
+              alt="Portrait of Kaung Htet Zan Thar"
+              fill
+              priority
+              sizes="220px"
+              className="object-cover object-top"
+            />
           </motion.div>
         </motion.div>
       </motion.div>

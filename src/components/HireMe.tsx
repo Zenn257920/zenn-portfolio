@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Profile, Social } from "@/lib/types";
 import { Reveal, SectionHeading, stagger, fadeUp } from "@/components/Reveal";
@@ -41,18 +42,24 @@ export default function HireMe({ profile, socials }: { profile: Profile; socials
       <div className="mx-auto max-w-[980px] px-5 md:px-8">
         <SectionHeading label="How it works" title="No agencies — just me, fully in on your product" />
         <Reveal>
-          <div className="grid gap-5 md:grid-cols-2">
-            {/* Left — tilted profile card */}
+          <div className="grid gap-5 pt-10 md:grid-cols-2">
+            {/* Left — tilted profile card, circular portrait overlapping the top edge */}
             <motion.div
               initial={{ rotate: -2 }}
               whileHover={{ rotate: 0, y: -4 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="rounded-3xl border border-line bg-card p-7 shadow-sm dark:border-night-line dark:bg-night-card"
+              className="relative rounded-3xl border border-line bg-card p-7 pt-12 shadow-sm dark:border-night-line dark:bg-night-card"
             >
+              <span className="absolute -top-10 left-7 block h-20 w-20 overflow-hidden rounded-full border-4 border-white shadow-lg dark:border-night-card">
+                <Image
+                  src="/portrait.jpg"
+                  alt="Portrait of Kaung Htet Zan Thar"
+                  fill
+                  sizes="80px"
+                  className="object-cover object-top"
+                />
+              </span>
               <div className="flex items-start gap-4">
-                <span className="flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-gradient-to-br from-accent via-[#2a6ea6] to-[#6ea8d8] font-display text-2xl font-bold text-white shadow-lg shadow-accent/30">
-                  KT
-                </span>
                 <div>
                   <p className="font-display text-xl font-bold leading-tight text-ink dark:text-[#eaf2f8]">
                     {profile.name}
@@ -119,12 +126,12 @@ export default function HireMe({ profile, socials }: { profile: Profile; socials
               </motion.p>
               <motion.div variants={fadeUp} className="mt-5 flex flex-wrap gap-3">
                 <motion.a
-                  href={`mailto:${profile.email ?? ""}`}
+                  href="/contact"
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
                   className="rounded-full bg-accent px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-accent/30"
                 >
-                  Email me →
+                  Send a message →
                 </motion.a>
                 <motion.a
                   href="/cv"
@@ -146,6 +153,9 @@ export default function HireMe({ profile, socials }: { profile: Profile; socials
           </h3>
           <p className="mt-3 font-display text-2xl italic text-ink-soft dark:text-[#a9c3d8]">
             — Kaung Htet Zan Thar
+          </p>
+          <p className="mt-2 text-base text-ink-soft dark:text-[#a9c3d8]">
+            Let&apos;s build something beautiful together.
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
             <div className="flex flex-wrap items-center gap-3">

@@ -1,13 +1,14 @@
 "use client";
 
-import { motion, useScroll, useSpring } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import type { Education, Experience, Skill } from "@/lib/types";
 import { SectionHeading, stagger, fadeUp } from "@/components/Reveal";
 
 function ContributionGrid() {
-  // Deterministic pseudo-random shading, Ocean-blue shades.
-  const cells = Array.from({ length: 7 * 26 }, (_, i) => {
+  // Zolt's grid: 5 rows x ~38 columns of 16px squares, Ocean-blue shades.
+  const COLS = 38;
+  const ROWS = 5;
+  const cells = Array.from({ length: ROWS * COLS }, (_, i) => {
     const v = (i * 2654435761) % 100;
     return v > 82 ? 4 : v > 62 ? 3 : v > 38 ? 2 : v > 16 ? 1 : 0;
   });
@@ -18,6 +19,11 @@ function ContributionGrid() {
     "bg-[#4a86b8] dark:bg-[#174a7c]",
     "bg-[#174a7c] dark:bg-[#6ea8d8]",
   ];
+  const dateFor = (col: number, row: number) => {
+    const d = new Date();
+    d.setDate(d.getDate() - ((COLS - 1 - col) * 7 + (ROWS - 1 - row)));
+    return d.toLocaleDateString("en-GB", { day: "numeric", month: "short" });
+  };
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
@@ -28,18 +34,24 @@ function ContributionGrid() {
         <div
           role="img"
           aria-label="Contribution-style activity grid for @Zenn257920"
-          className="grid w-max grid-flow-col grid-rows-7 gap-1"
+          className="grid w-max grid-flow-col grid-rows-5 gap-1"
         >
-          {cells.map((v, i) => (
-            <motion.span
-              key={i}
-              initial={{ opacity: 0, scale: 0.6 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: (i % 26) * 0.015 }}
-              className={`h-3 w-3 rounded-[3px] ${shades[v]}`}
-            />
-          ))}
+          {cells.map((v, i) => {
+            const col = Math.floor(i / ROWS);
+            const row = i % ROWS;
+            const date = dateFor(col, row);
+            return (
+              <motion.span
+                key={i}
+                title={v === 0 ? `No contributions on ${date}` : `Contributions on ${date}`}
+                initial={{ opacity: 0, scale: 0.6 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: (i % COLS) * 0.012 }}
+                className={`h-4 w-4 rounded-[4px] ${shades[v]}`}
+              />
+            );
+          })}
         </div>
       </div>
       <p className="mt-2 font-mono text-xs text-ink-soft dark:text-[#a9c3d8]">
@@ -49,24 +61,52 @@ function ContributionGrid() {
   );
 }
 
-function MarqueeRow({ names, reverse = false }: { names: string[]; reverse?: boolean }) {
-  const doubled = [...names, ...names];
+// Logo icons only, no text — like Zolt's marquee: muted grey tiles,
+// logos in monochrome until hovered, two rows moving in opposite directions.
+const SKILL_ICONS: Record<string, string> = {
+  HTML5: "html5.svg",
+  CSS3: "css3.svg",
+  JavaScript: "javascript.svg",
+  TypeScript: "typescript.svg",
+  "React.js": "react.svg",
+  "Next.js": "nextjs.svg",
+  "Tailwind CSS": "tailwindcss.svg",
+  Bootstrap: "bootstrap.svg",
+  "Material UI": "materialui.svg",
+  DaisyUI: "daisyui.svg",
+  "Framer Motion": "framer.svg",
+  "Redux Toolkit": "redux.svg",
+  Axios: "axios.svg",
+  "React Hook Form": "reacthookform.svg",
+  Zod: "zod.svg",
+  "Visual Studio Code": "vscode.svg",
+  PostgreSQL: "postgresql.svg",
+  Postman: "postman.svg",
+  Git: "git.svg",
+  GitHub: "github.svg",
+};
+
+function IconMarqueeRow({ icons, reverse = false }: { icons: string[]; reverse?: boolean }) {
+  const doubled = [...icons, ...icons];
   return (
-    <div
-      aria-hidden
-      className="relative overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]"
-    >
+    <div className="relative overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
       <motion.div
         animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
-        transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-        className="flex w-max gap-2 whitespace-nowrap"
+        transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
+        className="flex w-max gap-4 whitespace-nowrap"
       >
-        {doubled.map((n, i) => (
+        {doubled.map((name, i) => (
           <span
             key={i}
-            className="rounded-full border border-line bg-cream px-3.5 py-1.5 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#eaf2f8]"
+            className="group flex h-16 w-16 shrink-0 items-center justify-center rounded-2xl bg-cream-deep dark:bg-night"
           >
-            {n} <span className="text-accent">✦</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={`/skills/${SKILL_ICONS[name]}`}
+              alt={name}
+              loading="lazy"
+              className="h-9 w-9 object-contain opacity-70 grayscale transition duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0"
+            />
           </span>
         ))}
       </motion.div>
@@ -100,13 +140,10 @@ export default function StacksExperience({
   education: Education[];
 }) {
   const categories = Array.from(new Set(skills.map((s) => s.category)));
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start 0.75", "end 0.5"],
-  });
-  const lineScale = useSpring(scrollYProgress, { stiffness: 120, damping: 26 });
-  const marqueeNames = skills.filter((s) => s.category !== "Soft Skills").map((s) => s.name);
+  // Skills that have a logo icon — these run in the icon-only marquee.
+  const iconNames = skills.map((s) => s.name).filter((n) => SKILL_ICONS[n]);
+  const marqueeRow1 = iconNames.slice(0, Math.ceil(iconNames.length / 2));
+  const marqueeRow2 = iconNames.slice(Math.ceil(iconNames.length / 2));
 
   return (
     <section id="experience" className="scroll-mt-24 py-14 md:py-20">
@@ -127,7 +164,7 @@ export default function StacksExperience({
             <ContributionGrid />
           </motion.div>
           <motion.div variants={fadeUp} className="mt-6 border-y border-line py-1 dark:border-night-line">
-            <MarqueeRow names={marqueeNames} />
+            <IconMarqueeRow icons={marqueeRow1} />
           </motion.div>
           <div className="mt-8 grid gap-6 md:grid-cols-2">
             {categories.map((cat) => (
@@ -150,18 +187,12 @@ export default function StacksExperience({
             ))}
           </div>
           <motion.div variants={fadeUp} className="mt-6 border-t border-line pt-1 dark:border-night-line">
-            <MarqueeRow names={[...marqueeNames].reverse()} reverse />
+            <IconMarqueeRow icons={marqueeRow2} reverse />
           </motion.div>
         </motion.div>
 
-        {/* Timeline — ocean line fills on scroll */}
-        <div ref={timelineRef} className="relative mt-10">
-          <span aria-hidden className="absolute bottom-2 left-[19px] top-2 w-0.5 rounded-full bg-line md:left-[23px] dark:bg-night-line" />
-          <motion.span
-            aria-hidden
-            style={{ scaleY: lineScale }}
-            className="absolute bottom-2 left-[19px] top-2 w-0.5 origin-top rounded-full bg-accent md:left-[23px]"
-          />
+        {/* Timeline — Zolt style: large faded numbers, no connecting line */}
+        <div className="relative mt-10">
           <motion.ol
             variants={stagger}
             initial="hidden"
@@ -169,16 +200,16 @@ export default function StacksExperience({
             viewport={{ once: true, margin: "-60px" }}
             className="space-y-6"
           >
-            {experience.map((e) => {
+            {experience.map((e, idx) => {
               const h = headlineFor(e.role);
               return (
                 <motion.li key={e.id} variants={fadeUp} className="relative flex gap-4 md:gap-6">
-                  <motion.span
-                    whileHover={{ scale: 1.15 }}
-                    className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-accent font-display text-sm font-bold text-white shadow-md shadow-accent/40 md:h-12 md:w-12"
+                  <span
+                    aria-hidden
+                    className="w-10 shrink-0 pt-1 text-center font-display text-4xl font-bold text-ink/10 md:w-12 md:text-5xl dark:text-white/10"
                   >
-                    IS
-                  </motion.span>
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
                   <div className="flex-1 rounded-3xl border border-line bg-card p-5 shadow-sm md:p-6 dark:border-night-line dark:bg-night-card">
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
                       <h3 className="font-display text-xl font-bold text-ink dark:text-[#eaf2f8]">
@@ -216,14 +247,14 @@ export default function StacksExperience({
                 </motion.li>
               );
             })}
-            {education.map((ed) => (
+            {education.map((ed, idx) => (
               <motion.li key={`edu-${ed.id}`} variants={fadeUp} className="relative flex gap-4 md:gap-6">
-                <motion.span
-                  whileHover={{ scale: 1.15 }}
-                  className="relative z-10 flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl border border-line bg-card font-display text-xs font-bold text-ink shadow-sm md:h-12 md:w-12 dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
+                <span
+                  aria-hidden
+                  className="w-10 shrink-0 pt-1 text-center font-display text-4xl font-bold text-ink/10 md:w-12 md:text-5xl dark:text-white/10"
                 >
-                  UCS
-                </motion.span>
+                  {String(experience.length + idx + 1).padStart(2, "0")}
+                </span>
                 <div className="flex-1 rounded-3xl border border-line bg-card p-5 shadow-sm md:p-6 dark:border-night-line dark:bg-night-card">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
                     <h3 className="font-display text-xl font-bold text-ink dark:text-[#eaf2f8]">
