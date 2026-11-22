@@ -24,8 +24,8 @@ export default async function ContactPage() {
             <div className="grid gap-6 md:grid-cols-[1fr_360px]">
               <ContactForm email={profile.email ?? ""} services={data.services} />
               <div>
-                <div className="relative overflow-hidden rounded-3xl border border-line bg-card shadow-sm dark:border-night-line dark:bg-night-card">
-                  <div className="relative aspect-[432/394] w-full">
+                <div className="relative overflow-hidden rounded-[20px] border border-line bg-card shadow-sm dark:border-night-line dark:bg-night-card">
+                  <div className="relative aspect-[431/388] w-full">
                     <Image
                       src="/api/photo"
                       alt="Portrait of Kaung Htet Zan Thar"
@@ -34,11 +34,13 @@ export default async function ContactPage() {
                       className="object-cover object-top"
                     />
                   </div>
-                  <span className="absolute bottom-4 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 py-2 text-xs font-bold tracking-widest text-ink shadow-lg">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500" /> AVAILABLE
+                  {/* AVAILABLE pill sits inside the photo, bottom edge flush
+                      with the photo bottom — no overhang, like the sample */}
+                  <span className="absolute bottom-0 left-1/2 flex -translate-x-1/2 items-center gap-2 whitespace-nowrap rounded-full bg-white px-4 py-2 text-xs font-bold tracking-widest text-[#16A34A] shadow-lg dark:bg-night-card dark:text-[#4ADE80]">
+                    <span className="h-2 w-2 rounded-full bg-[#16A34A] dark:bg-[#4ADE80]" /> AVAILABLE
                   </span>
                 </div>
-                <p className="mt-4 text-center font-display text-lg font-bold text-ink dark:text-[#eaf2f8]">
+                <p className="mt-4 text-center font-display text-lg font-bold text-ink dark:text-[#F0F0F0]">
                   {profile.name} • {profile.title}
                 </p>
                 <div className="mt-3 flex flex-wrap justify-center gap-2">
@@ -48,13 +50,13 @@ export default async function ContactPage() {
                       href={s.url}
                       target={s.url.startsWith("mailto:") ? undefined : "_blank"}
                       rel="noreferrer"
-                      className="rounded-full border border-line bg-card px-4 py-2 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
+                      className="rounded-full border border-line bg-card px-4 py-2 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#F0F0F0]"
                     >
                       {s.platform === "GitHub" ? "GitHub · @Zenn257920 ↗" : "Email me ↗"}
                     </a>
                   ))}
                 </div>
-                <p className="mt-4 text-center text-sm leading-relaxed text-ink-soft dark:text-[#a9c3d8]">
+                <p className="mt-4 text-center text-sm leading-relaxed text-ink-faint dark:text-[#A3A3A3]">
                   {profile.location} · Asia/Yangon, UTC+6:30
                 </p>
               </div>

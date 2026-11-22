@@ -41,7 +41,7 @@ export function ThemeToggle() {
         }
       }}
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
-      className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-card text-lg text-ink shadow-sm transition-colors hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
+      className="flex h-10 w-10 items-center justify-center rounded-full border border-line bg-card text-lg text-ink shadow-sm transition-colors hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#F0F0F0]"
     >
       {dark ? "☀" : "☾"}
     </motion.button>
@@ -92,8 +92,8 @@ export default function SideNav({ name }: { name: string }) {
             title={l.label}
             className={`flex h-10 w-10 items-center justify-center rounded-full text-base transition-colors ${
               active === l.id
-                ? "bg-accent text-white shadow-md shadow-accent/40"
-                : "text-ink-soft hover:bg-cream-deep hover:text-ink dark:text-[#a9c3d8] dark:hover:bg-night-line dark:hover:text-[#eaf2f8]"
+                ? "bg-accent/15 text-accent dark:bg-accent/20 dark:text-[#FF8A50]"
+                : "text-ink-faint hover:bg-cream-deep hover:text-ink dark:text-[#A3A3A3] dark:hover:bg-night-line dark:hover:text-[#F0F0F0]"
             }`}
           >
             {l.icon}
@@ -113,19 +113,19 @@ export default function SideNav({ name }: { name: string }) {
           pointerEvents: scrolled ? "auto" : "none",
         }}
         transition={{ duration: 0.35 }}
-        className="fixed left-1/2 top-3 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-line bg-white/95 px-4 py-2 text-sm font-semibold shadow-lg shadow-black/5 backdrop-blur dark:border-night-line dark:bg-night-card/95 dark:text-[#eaf2f8]"
+        className="fixed left-1/2 top-3 z-40 flex -translate-x-1/2 items-center gap-2 rounded-full border border-line bg-white/95 px-4 py-2 text-sm font-semibold shadow-lg shadow-black/5 backdrop-blur dark:border-night-line dark:bg-night-card/95 dark:text-[#F0F0F0]"
       >
-        <span className="relative h-6 w-6 shrink-0 overflow-hidden rounded-full">
-          <Image src="/api/photo" alt="" fill sizes="24px" className="object-cover object-top" />
+        <span className="relative h-9 w-9 shrink-0 overflow-hidden rounded-full">
+          <Image src="/api/photo" alt="" fill sizes="36px" className="object-cover object-top" />
         </span>
         <span className="max-w-40 truncate">{name}</span>
-        <span className="hidden sm:inline text-xs font-medium text-ink-soft dark:text-[#a9c3d8]">
+        <span className="hidden sm:inline text-xs font-medium text-ink-faint dark:text-[#A3A3A3]">
           Frontend Developer
         </span>
-        <span className="flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
+        <span className="flex items-center gap-1 text-xs font-medium text-[#16A34A] dark:text-[#4ADE80]">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-500 opacity-60" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#16A34A] dark:bg-[#4ADE80] opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-[#16A34A] dark:bg-[#4ADE80]" />
           </span>
           Available
         </span>
@@ -149,8 +149,8 @@ export default function SideNav({ name }: { name: string }) {
             href={`#${l.id}`}
             className={`rounded-full px-4 py-2 text-sm font-semibold transition-colors ${
               active === l.id
-                ? "bg-accent text-white"
-                : "text-ink-soft hover:text-ink dark:text-[#a9c3d8] dark:hover:text-[#eaf2f8]"
+                ? "bg-accent/15 text-accent dark:bg-accent/20 dark:text-[#FF8A50]"
+                : "text-ink-faint hover:text-ink dark:text-[#A3A3A3] dark:hover:text-[#F0F0F0]"
             }`}
           >
             {l.label}
@@ -175,8 +175,8 @@ export default function SideNav({ name }: { name: string }) {
             aria-label={l.label}
             className={`flex h-10 w-10 items-center justify-center rounded-full text-base transition-colors ${
               active === l.id
-                ? "bg-accent text-white"
-                : "text-ink-soft dark:text-[#a9c3d8]"
+                ? "bg-accent/15 text-accent dark:bg-accent/20 dark:text-[#FF8A50]"
+                : "text-ink-faint dark:text-[#A3A3A3]"
             }`}
           >
             {l.icon}

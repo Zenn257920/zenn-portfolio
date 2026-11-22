@@ -5,7 +5,7 @@ import type { Education, Experience, Skill } from "@/lib/types";
 import { SectionHeading, stagger, fadeUp } from "@/components/Reveal";
 
 function ContributionGrid() {
-  // Zolt's grid: 5 rows x ~38 columns of 16px squares, Ocean-blue shades.
+  // Zolt's grid: 5 rows x ~38 columns of 16px squares, GitHub-style greens.
   const COLS = 38;
   const ROWS = 5;
   const cells = Array.from({ length: ROWS * COLS }, (_, i) => {
@@ -13,11 +13,11 @@ function ContributionGrid() {
     return v > 82 ? 4 : v > 62 ? 3 : v > 38 ? 2 : v > 16 ? 1 : 0;
   });
   const shades = [
-    "bg-cream-deep dark:bg-night-line",
-    "bg-[#a9c3d8] dark:bg-[#1e3d5c]",
-    "bg-[#6ea8d8] dark:bg-[#2a6ea6]",
-    "bg-[#4a86b8] dark:bg-[#174a7c]",
-    "bg-[#174a7c] dark:bg-[#6ea8d8]",
+    "bg-cream-deep dark:bg-[#1E1E1E]",
+    "bg-[#9BE9A8]",
+    "bg-[#40C463]",
+    "bg-[#30A14E]",
+    "bg-[#216E39]",
   ];
   const dateFor = (col: number, row: number) => {
     const d = new Date();
@@ -27,8 +27,8 @@ function ContributionGrid() {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3">
-        <p className="font-mono text-sm font-bold text-ink dark:text-[#eaf2f8]">@Zenn257920</p>
-        <p className="font-mono text-xs text-ink-soft dark:text-[#a9c3d8]">github.com/Zenn257920</p>
+        <p className="font-mono text-sm font-bold text-ink dark:text-[#F0F0F0]">@Zenn257920</p>
+        <p className="font-mono text-xs text-ink-faint dark:text-[#A3A3A3]">github.com/Zenn257920</p>
       </div>
       <div className="mt-3 overflow-x-auto pb-1">
         <div
@@ -54,7 +54,7 @@ function ContributionGrid() {
           })}
         </div>
       </div>
-      <p className="mt-2 font-mono text-xs text-ink-soft dark:text-[#a9c3d8]">
+      <p className="mt-2 font-mono text-xs text-ink-faint dark:text-[#A3A3A3]">
         Building, shipping and learning — week by week.
       </p>
     </div>
@@ -178,7 +178,7 @@ export default function StacksExperience({
                       <motion.span
                         key={s.id}
                         whileHover={{ scale: 1.07, y: -2 }}
-                        className="rounded-full border border-line bg-cream px-3 py-1.5 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#eaf2f8]"
+                        className="rounded-full border border-line bg-cream px-3 py-1.5 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#F0F0F0]"
                       >
                         {s.name}
                       </motion.span>
@@ -213,21 +213,21 @@ export default function StacksExperience({
                   </span>
                   <div className="flex-1 rounded-3xl border border-line bg-card p-5 shadow-sm md:p-6 dark:border-night-line dark:bg-night-card">
                     <div className="flex flex-wrap items-baseline justify-between gap-2">
-                      <h3 className="font-display text-xl font-bold text-ink dark:text-[#eaf2f8]">
+                      <h3 className="font-display text-xl font-bold text-ink dark:text-[#F0F0F0]">
                         {e.company}
                       </h3>
-                      <span className="rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-soft dark:bg-night dark:text-[#a9c3d8]">
+                      <span className="rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-faint dark:bg-night dark:text-[#A3A3A3]">
                         {e.duration}
                       </span>
                     </div>
                     <p className="mt-1 font-semibold text-accent">{e.role}</p>
-                    <p className="mt-3 font-display text-base font-bold leading-snug text-ink dark:text-[#eaf2f8]">
+                    <p className="mt-3 font-display text-base font-bold leading-snug text-ink dark:text-[#F0F0F0]">
                       {h.headline}
                     </p>
-                    <p className="mt-2 text-sm leading-relaxed text-ink-soft dark:text-[#b7cddd]">
+                    <p className="mt-2 text-sm leading-relaxed text-ink-soft dark:text-[#C2C2C2]">
                       {h.note} {e.description}
                     </p>
-                    <p className="mt-3 text-sm font-semibold text-ink dark:text-[#eaf2f8]">
+                    <p className="mt-3 text-sm font-semibold text-ink dark:text-[#F0F0F0]">
                       {e.highlight}
                     </p>
                     <div className="mt-3 flex flex-wrap gap-2">
@@ -238,7 +238,7 @@ export default function StacksExperience({
                         .map((t) => (
                           <span
                             key={t}
-                            className="rounded-full border border-line bg-cream px-3 py-1 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#eaf2f8]"
+                            className="rounded-full border border-line bg-cream px-3 py-1 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#F0F0F0]"
                           >
                             {t}
                           </span>
@@ -258,15 +258,15 @@ export default function StacksExperience({
                 </span>
                 <div className="flex-1 rounded-3xl border border-line bg-card p-5 shadow-sm md:p-6 dark:border-night-line dark:bg-night-card">
                   <div className="flex flex-wrap items-baseline justify-between gap-2">
-                    <h3 className="font-display text-xl font-bold text-ink dark:text-[#eaf2f8]">
+                    <h3 className="font-display text-xl font-bold text-ink dark:text-[#F0F0F0]">
                       {ed.school}
                     </h3>
-                    <span className="rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-soft dark:bg-night dark:text-[#a9c3d8]">
+                    <span className="rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-faint dark:bg-night dark:text-[#A3A3A3]">
                       {ed.period}
                     </span>
                   </div>
                   <p className="mt-1 font-semibold text-accent">{ed.degree}</p>
-                  <p className="mt-3 font-display text-base font-bold leading-snug text-ink dark:text-[#eaf2f8]">
+                  <p className="mt-3 font-display text-base font-bold leading-snug text-ink dark:text-[#F0F0F0]">
                     Studying computer science, building frontend skills alongside the degree.
                   </p>
                 </div>

@@ -71,15 +71,15 @@ export default function Services({ services }: { services: Service[] }) {
                 >
                   <span
                     className={`font-mono text-sm font-bold transition-colors ${
-                      isOpen ? "text-accent" : "text-ink-soft dark:text-[#a9c3d8]"
+                      isOpen ? "text-accent" : "text-ink-faint dark:text-[#A3A3A3]"
                     }`}
                   >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <span className="flex-1 font-display text-xl font-bold text-ink md:text-2xl dark:text-[#eaf2f8]">
+                  <span className="flex-1 font-display text-xl font-bold text-ink md:text-2xl dark:text-[#F0F0F0]">
                     {s.title}
                   </span>
-                  <span className="hidden rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-soft sm:inline dark:bg-night dark:text-[#a9c3d8]">
+                  <span className="hidden rounded-full bg-cream px-3 py-1 font-mono text-xs font-semibold text-ink-faint sm:inline dark:bg-night dark:text-[#A3A3A3]">
                     {d.duration}
                   </span>
                   <motion.span
@@ -88,7 +88,7 @@ export default function Services({ services }: { services: Service[] }) {
                     className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-full border text-lg transition-colors ${
                       isOpen
                         ? "border-accent bg-accent text-white"
-                        : "border-line text-ink dark:border-night-line dark:text-[#eaf2f8]"
+                        : "border-line text-ink dark:border-night-line dark:text-[#F0F0F0]"
                     }`}
                   >
                     +
@@ -106,22 +106,22 @@ export default function Services({ services }: { services: Service[] }) {
                     >
                       <div className="grid gap-6 px-6 pb-6 md:grid-cols-[1fr_200px] md:px-8">
                         <div>
-                          <p className="text-sm leading-relaxed text-ink-soft dark:text-[#b7cddd]">
+                          <p className="text-sm leading-relaxed text-ink-soft dark:text-[#C2C2C2]">
                             {s.description}
                           </p>
                           {d.extra ? (
-                            <p className="mt-3 text-sm leading-relaxed text-ink-soft dark:text-[#b7cddd]">
+                            <p className="mt-3 text-sm leading-relaxed text-ink-soft dark:text-[#C2C2C2]">
                               {d.extra}
                             </p>
                           ) : null}
-                          <p className="mt-4 font-mono text-xs font-bold uppercase tracking-widest text-ink-soft dark:text-[#a9c3d8]">
+                          <p className="mt-4 font-mono text-xs font-bold uppercase tracking-widest text-ink-faint dark:text-[#A3A3A3]">
                             Typical timeline · {d.duration}
                           </p>
                           <div className="mt-3 flex flex-wrap gap-2">
                             {d.tools.map((t) => (
                               <span
                                 key={t}
-                                className="rounded-full border border-line bg-cream px-3 py-1 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#eaf2f8]"
+                                className="rounded-full border border-line bg-cream px-3 py-1 text-xs font-semibold text-ink dark:border-night-line dark:bg-night dark:text-[#F0F0F0]"
                               >
                                 {t}
                               </span>

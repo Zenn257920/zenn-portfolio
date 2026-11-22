@@ -19,7 +19,7 @@ export default function ContactForm({
   const [sent, setSent] = useState(false);
 
   const inputCls =
-    "w-full rounded-2xl border border-line bg-white px-4 py-3 text-sm text-ink shadow-sm outline-none transition placeholder:text-ink-soft/60 focus:border-accent focus:ring-2 focus:ring-accent/30 dark:border-night-line dark:bg-night dark:text-[#eaf2f8]";
+    "w-full rounded-xl border border-line bg-cream-deep px-4 py-3 text-sm text-ink shadow-sm outline-none transition placeholder:text-ink-soft/60 focus:border-accent focus:ring-2 focus:ring-accent/30 dark:border-night-line dark:bg-[#1E1E1E] dark:text-[#F0F0F0]";
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,10 +44,10 @@ export default function ContactForm({
         animate={{ opacity: 1, y: 0 }}
         className="rounded-3xl border border-line bg-card p-7 shadow-sm dark:border-night-line dark:bg-night-card"
       >
-        <p className="font-display text-2xl font-bold text-ink dark:text-[#eaf2f8]">
+        <p className="font-display text-2xl font-bold text-ink dark:text-[#F0F0F0]">
           Thanks, {name.trim().split(" ")[0]} — your email app should have opened.
         </p>
-        <p className="mt-3 leading-relaxed text-ink-soft dark:text-[#b7cddd]">
+        <p className="mt-3 leading-relaxed text-ink-soft dark:text-[#C2C2C2]">
           Your message is addressed to {email}. Just press send in your email
           app and I&apos;ll get back to you as soon as possible — usually
           within a day.
@@ -55,7 +55,7 @@ export default function ContactForm({
         <button
           type="button"
           onClick={() => setSent(false)}
-          className="mt-5 rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-ink hover:border-accent dark:border-night-line dark:text-[#eaf2f8]"
+          className="mt-5 rounded-full border border-line px-5 py-2.5 text-sm font-semibold text-ink hover:border-accent dark:border-night-line dark:text-[#F0F0F0]"
         >
           Write another message
         </button>
@@ -71,7 +71,7 @@ export default function ContactForm({
     >
       <div className="space-y-5">
         <div>
-          <label htmlFor="contact-name" className="mb-2 block text-sm font-semibold text-ink dark:text-[#eaf2f8]">
+          <label htmlFor="contact-name" className="mb-2 block text-sm font-semibold text-ink dark:text-[#F0F0F0]">
             Name*
           </label>
           <input
@@ -88,7 +88,7 @@ export default function ContactForm({
           ) : null}
         </div>
         <div>
-          <label htmlFor="contact-email" className="mb-2 block text-sm font-semibold text-ink dark:text-[#eaf2f8]">
+          <label htmlFor="contact-email" className="mb-2 block text-sm font-semibold text-ink dark:text-[#F0F0F0]">
             Email*
           </label>
           <input
@@ -105,7 +105,7 @@ export default function ContactForm({
           ) : null}
         </div>
         <div>
-          <label htmlFor="contact-service" className="mb-2 block text-sm font-semibold text-ink dark:text-[#eaf2f8]">
+          <label htmlFor="contact-service" className="mb-2 block text-sm font-semibold text-ink dark:text-[#F0F0F0]">
             Service*
           </label>
           <select
@@ -122,7 +122,7 @@ export default function ContactForm({
           </select>
         </div>
         <div>
-          <label htmlFor="contact-message" className="mb-2 block text-sm font-semibold text-ink dark:text-[#eaf2f8]">
+          <label htmlFor="contact-message" className="mb-2 block text-sm font-semibold text-ink dark:text-[#F0F0F0]">
             Message
           </label>
           <textarea
@@ -138,11 +138,11 @@ export default function ContactForm({
           type="submit"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="w-full rounded-full bg-ink px-6 py-3.5 text-sm font-semibold text-cream shadow-lg shadow-black/10 dark:bg-accent dark:text-white"
+          className="w-full rounded-full border border-line bg-white px-6 py-3.5 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#F0F0F0]"
         >
-          Submit — I&apos;ll reach you soon
+          Submit
         </motion.button>
-        <p className="text-center text-xs leading-relaxed text-ink-soft dark:text-[#a9c3d8]">
+        <p className="text-center text-xs leading-relaxed text-ink-faint dark:text-[#A3A3A3]">
           This opens your own email app with the message ready to send. Nothing
           is stored on this site.
         </p>

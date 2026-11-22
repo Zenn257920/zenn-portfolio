@@ -6,20 +6,23 @@
   --font-sans: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-display), ui-sans-serif, system-ui, sans-serif;
   --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
-  /* Calm palette: Ice Blue main (60%), Ocean second (30%), white (10%) */
-  --color-cream: #eaf2f8;
-  --color-cream-light: #f2f7fb;
-  --color-cream-deep: #dceaf6;
-  --color-ink: #12293f;
-  --color-ink-soft: #33475e;
-  --color-line: #d3e2ee;
-  --color-accent: #174a7c;
-  --color-accent-deep: #0f3559;
-  --color-accent-light: #6ea8d8;
+  /* Zolt palette — exact solid-core values measured live from the sample
+     (2026-11-22 focused audit). Page and margins are one warm off-white;
+     beige cards #F0EDE8; orange #FF5C00; dark mode near-black #0A0A0A. */
+  --color-cream: #faf9f7;
+  --color-cream-light: #faf9f7;
+  --color-cream-deep: #f0ede8;
+  --color-ink: #1a1a1a;
+  --color-ink-soft: #3d3d3d;
+  --color-ink-faint: #7a7a7a;
+  --color-line: #ddd8d0;
+  --color-accent: #ff5c00;
+  --color-accent-deep: #d94e00;
+  --color-accent-light: #ff8a50;
   --color-card: #ffffff;
-  --color-night: #0b1d33;
-  --color-night-card: #12293f;
-  --color-night-line: #1e3d5c;
+  --color-night: #0a0a0a;
+  --color-night-card: #141414;
+  --color-night-line: #1e1e1e;
 }
 
 html {
@@ -33,17 +36,17 @@ body {
 
 .dark body {
   background-color: var(--color-night);
-  color: #eaf2f8;
+  color: #f0f0f0;
 }
 
-/* Calm dotted canvas outside the central column */
+/* Warm dotted canvas outside the central column */
 .dot-grid {
-  background-image: radial-gradient(#c9dcec 1.1px, transparent 1.1px);
+  background-image: radial-gradient(#dbdad9 1.1px, transparent 1.1px);
   background-size: 22px 22px;
 }
 
 .dark .dot-grid {
-  background-image: radial-gradient(#1e3d5c 1.1px, transparent 1.1px);
+  background-image: radial-gradient(#2e2e2e 1.1px, transparent 1.1px);
 }
 
 ::selection {
@@ -59,9 +62,9 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #c9dcec;
+  background: #dbdad9;
   border-radius: 999px;
 }
 .dark ::-webkit-scrollbar-thumb {
-  background: #1e3d5c;
+  background: #1e1e1e;
 }

@@ -23,13 +23,13 @@ function YangonClock() {
   }, []);
   return (
     <div className="rounded-2xl border border-line bg-card p-4 dark:border-night-line dark:bg-night-card">
-      <p className="font-mono text-xs uppercase tracking-widest text-ink-soft dark:text-[#a9c3d8]">
+      <p className="font-mono text-xs uppercase tracking-widest text-ink-faint dark:text-[#A3A3A3]">
         Local time · Yangon
       </p>
-      <p className="mt-1 font-display text-2xl font-bold tabular-nums text-ink dark:text-[#eaf2f8]">
+      <p className="mt-1 font-display text-2xl font-bold tabular-nums text-ink dark:text-[#F0F0F0]">
         {now || "--:--:--"}
       </p>
-      <p className="mt-1 font-mono text-xs text-ink-soft dark:text-[#a9c3d8]">
+      <p className="mt-1 font-mono text-xs text-ink-faint dark:text-[#A3A3A3]">
         Asia/Yangon · UTC+6:30
       </p>
     </div>
@@ -43,48 +43,63 @@ export default function HireMe({ profile, socials }: { profile: Profile; socials
         <SectionHeading label="How it works" title="No agencies — just me, fully in on your product" />
         <Reveal>
           <div className="grid gap-5 pt-10 md:grid-cols-2">
-            {/* Left — tilted profile card, circular portrait overlapping the top edge */}
+            {/* Left — profile card, measured from the sample: outer card in
+                the page background with a 1px border, straight; inside it a
+                white sub-card tilted -0.8°, inset ~15px; a 120px circular
+                avatar left-aligned in the white card with a pink star badge
+                straddling its bottom rim; availability + text below. */}
             <motion.div
-              initial={{ rotate: -2 }}
-              whileHover={{ rotate: 0, y: -4 }}
+              whileHover={{ y: -4 }}
               transition={{ type: "spring", stiffness: 200, damping: 20 }}
-              className="relative rounded-3xl border border-line bg-card p-7 pt-12 shadow-sm dark:border-night-line dark:bg-night-card"
+              className="rounded-3xl border border-line bg-cream p-4 shadow-sm md:p-5 dark:border-night-line dark:bg-night"
             >
-              <span className="absolute -top-10 left-7 block h-20 w-20 overflow-hidden rounded-full border-4 border-white shadow-lg dark:border-night-card">
-                <Image
-                  src="/api/photo"
-                  alt="Portrait of Kaung Htet Zan Thar"
-                  fill
-                  sizes="80px"
-                  className="object-cover object-top"
-                />
-              </span>
-              <div className="flex items-start gap-4">
-                <div>
-                  <p className="font-display text-xl font-bold leading-tight text-ink dark:text-[#eaf2f8]">
-                    {profile.name}
-                  </p>
-                  <p className="mt-1 text-sm text-ink-soft dark:text-[#a9c3d8]">
-                    Yangon, Myanmar
-                  </p>
-                  <p className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-cream px-3 py-1 text-xs font-semibold text-emerald-700 dark:bg-night dark:text-emerald-400">
-                    <span className="h-2 w-2 rounded-full bg-emerald-500" /> Available
-                  </p>
+              <div className="rotate-[-0.8deg] rounded-2xl border border-line bg-white p-6 shadow-sm dark:border-night-line dark:bg-night-card">
+                <div className="flex items-center gap-5">
+                  <div className="relative shrink-0">
+                    <span className="block h-[120px] w-[120px] overflow-hidden rounded-full">
+                      <Image
+                        src="/api/photo"
+                        alt="Portrait of Kaung Htet Zan Thar"
+                        fill
+                        sizes="120px"
+                        className="object-cover object-top"
+                      />
+                    </span>
+                    <span
+                      aria-hidden
+                      className="absolute -bottom-[7px] left-1/2 flex h-6 w-7 -translate-x-1/2 items-center justify-center rounded-md bg-[#F1BEDD] shadow-sm"
+                    >
+                      <span className="text-sm leading-none text-white">★</span>
+                    </span>
+                  </div>
+                  <div>
+                    <p className="font-display text-xl font-bold leading-tight text-ink dark:text-[#F0F0F0]">
+                      {profile.name}
+                    </p>
+                    <p className="mt-1 text-sm text-ink-faint dark:text-[#A3A3A3]">
+                      Yangon, Myanmar
+                    </p>
+                  </div>
                 </div>
               </div>
-              <p className="mt-5 leading-relaxed text-ink-soft dark:text-[#b7cddd]">
-                I care about craft, details, and building things people actually
-                enjoy using — responsive, reusable and user-friendly, with clean,
-                maintainable code.
-              </p>
-              <h3 className="mt-6 font-display text-3xl font-bold text-ink dark:text-[#eaf2f8]">
-                Hire me today
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft dark:text-[#a9c3d8]">
-                I take on a small number of projects at a time, so your work
-                always gets my full focus. Tell me about your product and
-                I&apos;ll get back to you.
-              </p>
+              <div className="px-3 pb-3 pt-5">
+                <p className="inline-flex items-center gap-1.5 rounded-full bg-white px-3 py-1 text-xs font-semibold text-[#16A34A] dark:bg-night-card dark:text-[#4ADE80]">
+                  <span className="h-2 w-2 rounded-full bg-[#16A34A] dark:bg-[#4ADE80]" /> Available
+                </p>
+                <p className="mt-5 leading-relaxed text-ink-soft dark:text-[#C2C2C2]">
+                  I care about craft, details, and building things people actually
+                  enjoy using — responsive, reusable and user-friendly, with clean,
+                  maintainable code.
+                </p>
+                <h3 className="mt-6 font-display text-3xl font-bold text-ink dark:text-[#F0F0F0]">
+                  Hire me today
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-faint dark:text-[#A3A3A3]">
+                  I take on a small number of projects at a time, so your work
+                  always gets my full focus. Tell me about your product and
+                  I&apos;ll get back to you.
+                </p>
+              </div>
             </motion.div>
 
             {/* Right — Let's work together */}
@@ -148,13 +163,13 @@ export default function HireMe({ profile, socials }: { profile: Profile; socials
 
         {/* Footer */}
         <footer className="mt-14 border-t border-line pt-10 pb-24 md:pb-10 dark:border-night-line">
-          <h3 className="font-display text-4xl font-bold tracking-tight text-ink md:text-[40px] dark:text-[#eaf2f8]">
+          <h3 className="font-display text-4xl font-bold tracking-tight text-ink md:text-[40px] dark:text-[#F0F0F0]">
             Thank you for visiting
           </h3>
-          <p className="mt-3 font-display text-2xl italic text-ink-soft dark:text-[#a9c3d8]">
+          <p className="mt-3 font-display text-2xl italic text-ink-faint dark:text-[#A3A3A3]">
             — Kaung Htet Zan Thar
           </p>
-          <p className="mt-2 text-base text-ink-soft dark:text-[#a9c3d8]">
+          <p className="mt-2 text-base text-ink-faint dark:text-[#A3A3A3]">
             Let&apos;s build something beautiful together.
           </p>
           <div className="mt-8 grid gap-4 md:grid-cols-2">
@@ -165,7 +180,7 @@ export default function HireMe({ profile, socials }: { profile: Profile; socials
                   href={s.url}
                   target={s.url.startsWith("mailto:") ? undefined : "_blank"}
                   rel="noreferrer"
-                  className="rounded-full border border-line bg-card px-5 py-2.5 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
+                  className="rounded-full border border-line bg-card px-5 py-2.5 text-sm font-semibold text-ink shadow-sm hover:border-accent dark:border-night-line dark:bg-night-card dark:text-[#F0F0F0]"
                 >
                   {s.platform === "GitHub"
                     ? "GitHub · @Zenn257920 ↗"
@@ -177,7 +192,7 @@ export default function HireMe({ profile, socials }: { profile: Profile; socials
             </div>
             <YangonClock />
           </div>
-          <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 text-sm text-ink-soft md:flex-row dark:border-night-line dark:text-[#a9c3d8]">
+          <div className="mt-8 flex flex-col items-center justify-between gap-3 border-t border-line pt-6 text-sm text-ink-faint md:flex-row dark:border-night-line dark:text-[#A3A3A3]">
             <p>© 2026 {profile.name}</p>
             <p className="font-mono text-xs">
               Built with Next.js, TypeScript &amp; Framer Motion · Data from Neon PostgreSQL

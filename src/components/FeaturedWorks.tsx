@@ -23,13 +23,13 @@ export function DashboardMock({
     { label: "Activity", sub: "Latest updates" },
   ];
   return (
-    <div aria-hidden className="relative overflow-hidden rounded-2xl border border-line bg-[#dceaf6] p-4 dark:border-night-line dark:bg-night">
+    <div aria-hidden className="relative overflow-hidden rounded-2xl border border-line bg-cream-deep p-4 dark:border-night-line dark:bg-night">
       <div className="overflow-hidden rounded-xl border border-line bg-card shadow-sm dark:border-night-line dark:bg-night-card">
         <div className="flex items-center gap-2 border-b border-line bg-cream px-4 py-2.5 dark:border-night-line dark:bg-night">
-          <span className="h-3 w-3 rounded-full bg-[#174a7c]" />
-          <span className="h-3 w-3 rounded-full bg-[#6ea8d8]" />
-          <span className="h-3 w-3 rounded-full bg-[#a9c3d8]" />
-          <span className="ml-2 truncate font-mono text-xs font-semibold text-ink-soft dark:text-[#a9c3d8]">
+          <span className="h-3 w-3 rounded-full bg-[#FF5C00]" />
+          <span className="h-3 w-3 rounded-full bg-[#FF8A50]" />
+          <span className="h-3 w-3 rounded-full bg-[#A3A3A3]" />
+          <span className="ml-2 truncate font-mono text-xs font-semibold text-ink-faint dark:text-[#A3A3A3]">
             {title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.app
           </span>
         </div>
@@ -37,10 +37,10 @@ export function DashboardMock({
           <div className="grid grid-cols-3 gap-3">
             {tiles.map((t, i) => (
               <div key={t.label} className="rounded-lg bg-cream px-3 py-2.5 dark:bg-night">
-                <p className={`text-sm font-bold ${i === 1 ? "text-accent" : "text-ink dark:text-[#eaf2f8]"}`}>
+                <p className={`text-sm font-bold ${i === 1 ? "text-accent" : "text-ink dark:text-[#F0F0F0]"}`}>
                   {t.label}
                 </p>
-                <p className="mt-0.5 text-xs text-ink-soft dark:text-[#a9c3d8]">{t.sub}</p>
+                <p className="mt-0.5 text-xs text-ink-faint dark:text-[#A3A3A3]">{t.sub}</p>
               </div>
             ))}
           </div>
@@ -52,12 +52,12 @@ export function DashboardMock({
                 whileInView={{ height: `${v}%` }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 + j * 0.07, type: "spring", stiffness: 160, damping: 18 }}
-                className={`w-full rounded-md ${j === 1 || j === 3 ? "bg-accent" : "bg-ink/70 dark:bg-[#eaf2f8]/70"}`}
+                className={`w-full rounded-md ${j === 1 || j === 3 ? "bg-accent" : "bg-ink/70 dark:bg-[#F0F0F0]/70"}`}
               />
             ))}
           </div>
           <div className="mt-3 flex items-center justify-between rounded-lg bg-cream px-3 py-2.5 dark:bg-night">
-            <span className="text-xs font-semibold text-ink-soft dark:text-[#a9c3d8]">● Live data</span>
+            <span className="text-xs font-semibold text-ink-faint dark:text-[#A3A3A3]">● Live data</span>
             <span className="text-xs font-bold text-accent">{stackLabel}</span>
           </div>
         </div>
@@ -108,20 +108,20 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
                     </span>
                   ))}
                 </div>
-                <h3 className="mt-4 font-display text-2xl font-bold text-ink transition-colors group-hover:text-accent md:text-3xl dark:text-[#eaf2f8]">
+                <h3 className="mt-4 font-display text-2xl font-bold text-ink transition-colors group-hover:text-accent md:text-3xl dark:text-[#F0F0F0]">
                   {p.title}
                 </h3>
-                <p className="mt-1 text-sm font-medium text-ink-soft dark:text-[#a9c3d8]">
+                <p className="mt-1 text-sm font-medium text-ink-faint dark:text-[#A3A3A3]">
                   {p.period} · {p.role ?? "Frontend Developer"}
                 </p>
-                <p className="mt-3 text-sm leading-relaxed text-ink-soft dark:text-[#b7cddd]">
+                <p className="mt-3 text-sm leading-relaxed text-ink-soft dark:text-[#C2C2C2]">
                   {p.description}
                 </p>
-                <p className="mt-4 font-display text-base font-bold text-ink dark:text-[#eaf2f8]">
+                <p className="mt-4 font-display text-base font-bold text-ink dark:text-[#F0F0F0]">
                   {p.highlight}
                 </p>
                 {OUTCOMES[p.title] ? (
-                  <p className="mt-2 text-sm text-ink-soft dark:text-[#a9c3d8]">
+                  <p className="mt-2 text-sm text-ink-faint dark:text-[#A3A3A3]">
                     {OUTCOMES[p.title]}
                   </p>
                 ) : null}
