@@ -149,7 +149,8 @@ export default function HireMe({ profile, socials }: { profile: Profile; socials
                   Send a message →
                 </motion.a>
                 <motion.a
-                  href="/cv"
+                  href="/api/cv"
+                  download="Kaung_Htet_Zan_Thar_Resume.pdf"
                   whileHover={{ scale: 1.04 }}
                   whileTap={{ scale: 0.96 }}
                   className="rounded-full border border-cream/30 px-6 py-3 text-sm font-semibold text-cream"

@@ -20,7 +20,16 @@ export default async function CvPage() {
         <a href="/" className="text-sm font-semibold text-accent">
           ← Back to portfolio
         </a>
-        <PrintButton />
+        <div className="flex items-center gap-3">
+          <a
+            href="/api/cv"
+            download="Kaung_Htet_Zan_Thar_Resume.pdf"
+            className="rounded-full bg-accent px-5 py-2.5 text-sm font-semibold text-white"
+          >
+            Download PDF ↓
+          </a>
+          <PrintButton />
+        </div>
       </div>
       <article className="rounded-3xl border border-line bg-card p-8 shadow-sm print:border-0 print:shadow-none dark:border-night-line dark:bg-night-card">
         <h1 className="font-display text-4xl font-bold text-ink dark:text-[#F0F0F0]">

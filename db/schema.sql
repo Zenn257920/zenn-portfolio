@@ -13,6 +13,7 @@ CREATE TABLE IF NOT EXISTS profile (
   bio TEXT,
   availability TEXT,
   photo_base64 TEXT,
+  cv_pdf_base64 TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 

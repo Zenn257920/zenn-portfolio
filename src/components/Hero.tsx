@@ -103,7 +103,8 @@ export default function Hero({ profile }: { profile: Profile }) {
 
           <motion.div variants={fadeUp} className="mt-8 flex flex-wrap items-center gap-3">
             <motion.a
-              href="/cv"
+              href="/api/cv"
+              download="Kaung_Htet_Zan_Thar_Resume.pdf"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
               className="rounded-full border border-line bg-white px-6 py-3 text-sm font-semibold text-ink shadow-sm dark:border-night-line dark:bg-night-card dark:text-[#F0F0F0]"

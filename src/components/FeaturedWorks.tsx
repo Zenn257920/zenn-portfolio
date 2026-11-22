@@ -23,7 +23,7 @@ export function DashboardMock({
     { label: "Activity", sub: "Latest updates" },
   ];
   return (
-    <div aria-hidden className="relative overflow-hidden rounded-2xl border border-line bg-cream-deep p-4 dark:border-night-line dark:bg-night">
+    <div aria-hidden className="relative overflow-hidden rounded-2xl border border-line bg-cream-deep p-3 dark:border-night-line dark:bg-night md:p-4">
       <div className="overflow-hidden rounded-xl border border-line bg-card shadow-sm dark:border-night-line dark:bg-night-card">
         <div className="flex items-center gap-2 border-b border-line bg-cream px-4 py-2.5 dark:border-night-line dark:bg-night">
           <span className="h-3 w-3 rounded-full bg-[#FF5C00]" />
@@ -33,14 +33,14 @@ export function DashboardMock({
             {title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.app
           </span>
         </div>
-        <div className="p-4">
-          <div className="grid grid-cols-3 gap-3">
+        <div className="p-3 md:p-4">
+          <div className="grid grid-cols-3 gap-2 md:gap-3">
             {tiles.map((t, i) => (
-              <div key={t.label} className="rounded-lg bg-cream px-3 py-2.5 dark:bg-night">
-                <p className={`text-sm font-bold ${i === 1 ? "text-accent" : "text-ink dark:text-[#F0F0F0]"}`}>
+              <div key={t.label} className="min-w-0 rounded-lg bg-cream px-2 py-2 dark:bg-night md:px-3 md:py-2.5">
+                <p className={`truncate text-[11px] font-bold leading-tight md:text-sm ${i === 1 ? "text-accent" : "text-ink dark:text-[#F0F0F0]"}`}>
                   {t.label}
                 </p>
-                <p className="mt-0.5 text-xs text-ink-faint dark:text-[#A3A3A3]">{t.sub}</p>
+                <p className="mt-0.5 text-[10px] text-ink-faint md:text-xs dark:text-[#A3A3A3]">{t.sub}</p>
               </div>
             ))}
           </div>
@@ -128,7 +128,7 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
               </div>
             );
             const mock = (
-              <div className={`min-w-0 p-4 transition-transform duration-500 group-hover:scale-[1.02] md:p-6 ${reversed ? "md:pr-0" : "md:pl-0"}`}>
+              <div className={`min-w-0 p-3 transition-transform duration-500 group-hover:scale-[1.02] md:p-6 ${reversed ? "md:pr-0" : "md:pl-0"}`}>
                 <DashboardMock title={p.title} variant={i % 2} stackLabel={stackLabel} />
               </div>
             );
@@ -141,8 +141,8 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
               >
                 {reversed ? (
                   <>
-                    <div className="order-2 md:order-1">{mock}</div>
-                    <div className="order-1 md:order-2">{text}</div>
+                    <div className="order-2 min-w-0 md:order-1">{mock}</div>
+                    <div className="order-1 min-w-0 md:order-2">{text}</div>
                   </>
                 ) : (
                   <>

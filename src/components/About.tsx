@@ -74,13 +74,13 @@ export default function About({
           <motion.article
             variants={fadeUp}
             whileHover={{ y: -4 }}
-            className="flex flex-col justify-center rounded-3xl border border-line bg-cream-deep p-6 text-ink shadow-sm dark:border-night-line dark:bg-[#1E1E1E] dark:text-[#F0F0F0]"
+            className="flex flex-col justify-center rounded-3xl border border-line bg-cream-deep p-4 text-ink shadow-sm dark:border-night-line dark:bg-[#1E1E1E] dark:text-[#F0F0F0] md:p-6"
           >
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold text-accent">Currently</p>
               <span className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-sm text-white">▶</span>
             </div>
-            <p className="mt-3 font-display text-xl font-bold leading-snug">
+            <p className="mt-3 break-words font-display text-lg font-bold leading-snug [hyphens:auto] md:text-xl">
               {profile.availability ?? "Open to frontend opportunities"}
             </p>
             <p className="mt-2 text-sm leading-relaxed text-ink-soft dark:text-[#C2C2C2]">
@@ -103,7 +103,7 @@ export default function About({
           <motion.article
             variants={fadeUp}
             whileHover={{ y: -4 }}
-            className="relative flex flex-col justify-center overflow-hidden rounded-3xl border border-line bg-cream-deep p-6 shadow-sm dark:border-night-line dark:bg-[#1E1E1E]"
+            className="relative flex flex-col justify-center overflow-hidden rounded-3xl border border-line bg-cream-deep p-4 shadow-sm dark:border-night-line dark:bg-[#1E1E1E] md:p-6"
           >
             <div aria-hidden className="absolute inset-0 opacity-40 [background-image:linear-gradient(#DBDAD9_1px,transparent_1px),linear-gradient(90deg,#DBDAD9_1px,transparent_1px)] [background-size:28px_28px] dark:opacity-20" />
             <div className="relative">
