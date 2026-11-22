@@ -97,7 +97,7 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
               .filter(Boolean);
             const stackLabel = tech.slice(0, 2).join(" + ") || "React + TypeScript";
             const text = (
-              <div className="p-6 md:p-8">
+              <div className="min-w-0 p-6 md:p-8">
                 <div className="flex flex-wrap gap-2">
                   {tech.map((t) => (
                     <span
@@ -128,7 +128,7 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
               </div>
             );
             const mock = (
-              <div className={`p-4 transition-transform duration-500 group-hover:scale-[1.02] md:p-6 ${reversed ? "md:pr-0" : "md:pl-0"}`}>
+              <div className={`min-w-0 p-4 transition-transform duration-500 group-hover:scale-[1.02] md:p-6 ${reversed ? "md:pr-0" : "md:pl-0"}`}>
                 <DashboardMock title={p.title} variant={i % 2} stackLabel={stackLabel} />
               </div>
             );
@@ -137,7 +137,7 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
                 key={p.id}
                 variants={fadeUp}
                 whileHover={{ y: -4 }}
-                className="group grid overflow-hidden rounded-3xl border border-line bg-card shadow-sm md:grid-cols-2 dark:border-night-line dark:bg-night-card"
+                className="group grid grid-cols-1 overflow-hidden rounded-3xl border border-line bg-card shadow-sm md:grid-cols-2 dark:border-night-line dark:bg-night-card"
               >
                 {reversed ? (
                   <>
