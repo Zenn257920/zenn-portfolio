@@ -61,8 +61,9 @@ function ContributionGrid() {
   );
 }
 
-// Logo icons only, no text — like Zolt's marquee: muted grey tiles,
-// logos in monochrome until hovered, two rows moving in opposite directions.
+// Logo icons only, no text — like Zolt's marquee, but fixed: Zolt's logos
+// are washed-out grey and clipped by a wide edge fade, so ours run in
+// full colour at full contrast, with only a very narrow edge fade.
 const SKILL_ICONS: Record<string, string> = {
   HTML5: "html5.svg",
   CSS3: "css3.svg",
@@ -89,7 +90,7 @@ const SKILL_ICONS: Record<string, string> = {
 function IconMarqueeRow({ icons, reverse = false }: { icons: string[]; reverse?: boolean }) {
   const doubled = [...icons, ...icons];
   return (
-    <div className="relative overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+    <div className="relative overflow-hidden py-2 [mask-image:linear-gradient(to_right,transparent,black_2%,black_98%,transparent)]">
       <motion.div
         animate={{ x: reverse ? ["-50%", "0%"] : ["0%", "-50%"] }}
         transition={{ duration: 36, repeat: Infinity, ease: "linear" }}
@@ -105,7 +106,7 @@ function IconMarqueeRow({ icons, reverse = false }: { icons: string[]; reverse?:
               src={`/skills/${SKILL_ICONS[name]}`}
               alt={name}
               loading="lazy"
-              className="h-9 w-9 object-contain opacity-70 grayscale transition duration-300 group-hover:scale-110 group-hover:opacity-100 group-hover:grayscale-0"
+              className="h-9 w-9 object-contain transition duration-300 group-hover:scale-110"
             />
           </span>
         ))}
@@ -146,7 +147,7 @@ export default function StacksExperience({
   const marqueeRow2 = iconNames.slice(Math.ceil(iconNames.length / 2));
 
   return (
-    <section id="experience" className="scroll-mt-24 py-14 md:py-20">
+    <section id="experience" className="scroll-mt-24 border-t border-line py-20 md:py-24 dark:border-night-line">
       <div className="mx-auto max-w-[980px] px-5 md:px-8">
         <SectionHeading
           label="Stacks & Experience"

@@ -10,8 +10,9 @@ const DETAILS: Record<string, { duration: string; tools: string[]; extra: string
   "Frontend Development": {
     duration: "1–3 weeks",
     tools: ["React", "Next.js", "TypeScript"],
-    extra:
-      "I build the full frontend — components, pages and routing — so the product works end to end, not just on one screen. Reusable components keep the codebase easy to change later.",
+    // No extra paragraph: the Neon description already says this, and
+    // rendering both showed two near-identical paragraphs back-to-back.
+    extra: "",
   },
   "Responsive UI Development": {
     duration: "1–2 weeks",
@@ -42,7 +43,7 @@ const DETAILS: Record<string, { duration: string; tools: string[]; extra: string
 export default function Services({ services }: { services: Service[] }) {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <section id="services" className="scroll-mt-24 py-14 md:py-20">
+    <section id="services" className="scroll-mt-24 border-t border-line py-20 md:py-24 dark:border-night-line">
       <div className="mx-auto max-w-[980px] px-5 md:px-8">
         <SectionHeading label="Services I provide" title="I can help you with these things" />
         <motion.div
@@ -127,7 +128,7 @@ export default function Services({ services }: { services: Service[] }) {
                             ))}
                           </div>
                         </div>
-                        <div className="hidden rotate-2 md:block">
+                        <div className="hidden rotate-2 transition-transform duration-500 hover:rotate-0 hover:scale-[1.02] md:block">
                           <DashboardMock title={s.title} variant={i % 2} />
                         </div>
                       </div>

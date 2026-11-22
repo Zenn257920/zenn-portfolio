@@ -8,6 +8,7 @@
   --font-mono: ui-monospace, "SF Mono", "Cascadia Mono", Menlo, monospace;
   /* Calm palette: Ice Blue main (60%), Ocean second (30%), white (10%) */
   --color-cream: #eaf2f8;
+  --color-cream-light: #f2f7fb;
   --color-cream-deep: #dceaf6;
   --color-ink: #12293f;
   --color-ink-soft: #33475e;
@@ -26,7 +27,7 @@ html {
 }
 
 body {
-  background-color: var(--color-cream);
+  background-color: var(--color-cream-light);
   color: var(--color-ink);
 }
 

@@ -38,7 +38,7 @@ function YangonClock() {
 
 export default function HireMe({ profile, socials }: { profile: Profile; socials: Social[] }) {
   return (
-    <section id="contact" className="scroll-mt-24 py-14 md:py-20">
+    <section id="contact" className="scroll-mt-24 border-t border-line py-20 md:py-24 dark:border-night-line">
       <div className="mx-auto max-w-[980px] px-5 md:px-8">
         <SectionHeading label="How it works" title="No agencies — just me, fully in on your product" />
         <Reveal>

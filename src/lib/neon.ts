@@ -16,7 +16,7 @@ export async function getPortfolio(): Promise<PortfolioData> {
     const sql = neon(url);
     const [profile, skills, experience, projects, services, education, socials] =
       await Promise.all([
-        sql`SELECT * FROM profile ORDER BY id`,
+        sql`SELECT id, name, title, location, email, phone, bio, availability, created_at FROM profile ORDER BY id`,
         sql`SELECT * FROM skills ORDER BY sort_order, id`,
         sql`SELECT * FROM experience ORDER BY sort_order, id`,
         sql`SELECT * FROM projects ORDER BY sort_order, id`,

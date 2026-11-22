@@ -4,6 +4,9 @@ import { motion } from "framer-motion";
 import type { Project } from "@/lib/types";
 import { SectionHeading, stagger, fadeUp } from "@/components/Reveal";
 
+// Crisp flat vector dashboard mock — the fix for Zolt's washed-out,
+// illegible laptop screenshots: a solid flat background, large legible
+// labels, big animated bars, no tiny text and no blur or noise.
 export function DashboardMock({
   title,
   variant = 0,
@@ -14,34 +17,49 @@ export function DashboardMock({
   stackLabel?: string;
 }) {
   const bars = variant === 1 ? [42, 78, 58, 90, 64] : [68, 92, 47, 80, 55];
+  const tiles = [
+    { label: "Overview", sub: "At a glance" },
+    { label: "Records", sub: "Lists & detail" },
+    { label: "Activity", sub: "Latest updates" },
+  ];
   return (
-    <div aria-hidden className="relative overflow-hidden rounded-2xl border border-line bg-cream-deep p-3 dark:border-night-line dark:bg-night">
-      <div className="flex items-center gap-1.5 rounded-t-xl border border-line bg-card px-3 py-2 dark:border-night-line dark:bg-night-card">
-        <span className="h-2.5 w-2.5 rounded-full bg-[#174a7c]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#6ea8d8]" />
-        <span className="h-2.5 w-2.5 rounded-full bg-[#a9c3d8]" />
-        <span className="ml-2 truncate font-mono text-[11px] text-ink-soft dark:text-[#a9c3d8]">
-          {title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.app
-        </span>
-      </div>
-      <div className="grid grid-cols-3 gap-2 rounded-b-xl border border-t-0 border-line bg-card p-3 dark:border-night-line dark:bg-night-card">
-        {[68, 92, 47].map((h, i) => (
-          <div key={i} className="flex h-20 items-end gap-1 rounded-lg bg-cream p-2 dark:bg-night">
+    <div aria-hidden className="relative overflow-hidden rounded-2xl border border-line bg-[#dceaf6] p-4 dark:border-night-line dark:bg-night">
+      <div className="overflow-hidden rounded-xl border border-line bg-card shadow-sm dark:border-night-line dark:bg-night-card">
+        <div className="flex items-center gap-2 border-b border-line bg-cream px-4 py-2.5 dark:border-night-line dark:bg-night">
+          <span className="h-3 w-3 rounded-full bg-[#174a7c]" />
+          <span className="h-3 w-3 rounded-full bg-[#6ea8d8]" />
+          <span className="h-3 w-3 rounded-full bg-[#a9c3d8]" />
+          <span className="ml-2 truncate font-mono text-xs font-semibold text-ink-soft dark:text-[#a9c3d8]">
+            {title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.app
+          </span>
+        </div>
+        <div className="p-4">
+          <div className="grid grid-cols-3 gap-3">
+            {tiles.map((t, i) => (
+              <div key={t.label} className="rounded-lg bg-cream px-3 py-2.5 dark:bg-night">
+                <p className={`text-sm font-bold ${i === 1 ? "text-accent" : "text-ink dark:text-[#eaf2f8]"}`}>
+                  {t.label}
+                </p>
+                <p className="mt-0.5 text-xs text-ink-soft dark:text-[#a9c3d8]">{t.sub}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-3 flex h-28 items-end gap-2 rounded-lg bg-cream p-3 dark:bg-night">
             {bars.map((v, j) => (
               <motion.span
                 key={j}
                 initial={{ height: "8%" }}
-                whileInView={{ height: `${(v * h) / 100}%` }}
+                whileInView={{ height: `${v}%` }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.2 + j * 0.07, type: "spring", stiffness: 160, damping: 18 }}
-                className={`w-full rounded-sm ${i === 1 ? "bg-accent" : "bg-ink/70 dark:bg-[#eaf2f8]/70"}`}
+                className={`w-full rounded-md ${j === 1 || j === 3 ? "bg-accent" : "bg-ink/70 dark:bg-[#eaf2f8]/70"}`}
               />
             ))}
           </div>
-        ))}
-        <div className="col-span-3 flex items-center justify-between rounded-lg bg-cream px-3 py-2 dark:bg-night">
-          <span className="font-mono text-[11px] text-ink-soft dark:text-[#a9c3d8]">● Live data</span>
-          <span className="font-mono text-[11px] font-semibold text-accent">{stackLabel}</span>
+          <div className="mt-3 flex items-center justify-between rounded-lg bg-cream px-3 py-2.5 dark:bg-night">
+            <span className="text-xs font-semibold text-ink-soft dark:text-[#a9c3d8]">● Live data</span>
+            <span className="text-xs font-bold text-accent">{stackLabel}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -61,7 +79,7 @@ const OUTCOMES: Record<string, string> = {
 
 export default function FeaturedWorks({ projects }: { projects: Project[] }) {
   return (
-    <section id="works" className="scroll-mt-24 py-14 md:py-20">
+    <section id="works" className="scroll-mt-24 border-t border-line py-20 md:py-24 dark:border-night-line">
       <div className="mx-auto max-w-[980px] px-5 md:px-8">
         <SectionHeading label="Featured works" title="These are the ones that taught me the most" />
         <motion.div
@@ -110,7 +128,7 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
               </div>
             );
             const mock = (
-              <div className={`p-4 md:p-6 ${reversed ? "md:pr-0" : "md:pl-0"}`}>
+              <div className={`p-4 transition-transform duration-500 group-hover:scale-[1.02] md:p-6 ${reversed ? "md:pr-0" : "md:pl-0"}`}>
                 <DashboardMock title={p.title} variant={i % 2} stackLabel={stackLabel} />
               </div>
             );

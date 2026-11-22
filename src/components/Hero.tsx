@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Profile } from "@/lib/types";
-import { stagger, fadeUp } from "@/components/Reveal";
+import { stagger, fadeUp, wordStagger, wordRise } from "@/components/Reveal";
 
 const GREETINGS = ["Mingalaba", "Hello", "Hola"];
 
@@ -17,9 +17,11 @@ export default function Hero({ profile }: { profile: Profile }) {
 
   return (
     <section id="home" className="relative overflow-hidden pt-16 pb-14 md:pt-24 md:pb-20">
+      {/* No initial="hidden": the hero is above the fold, so its content
+          must be visible on first paint instead of blank until hydration
+          finishes the entrance animation. */}
       <motion.div
         variants={stagger}
-        initial="hidden"
         animate="show"
         className="mx-auto grid max-w-[980px] gap-10 px-5 md:grid-cols-[1fr_220px] md:gap-6 md:px-8"
       >
@@ -55,19 +57,29 @@ export default function Hero({ profile }: { profile: Profile }) {
             </AnimatePresence>
           </motion.p>
 
+          {/* H1 — words rise one by one, like Zolt's staggered intro */}
           <motion.h1
-            variants={fadeUp}
+            variants={wordStagger}
             className="mt-2 font-display text-5xl font-bold leading-[0.95] tracking-tight text-ink sm:text-6xl md:text-7xl dark:text-[#eaf2f8]"
           >
-            I am Kaung{" "}
-            <motion.span
-              aria-hidden
-              className="inline-block"
-              animate={{ rotate: [0, 14, -8, 14, 0] }}
-              transition={{ duration: 1.6, repeat: Infinity, repeatDelay: 2.5 }}
-            >
-              👋
-            </motion.span>
+            {["I", "am", "Kaung"].map((w) => (
+              <span key={w} className="inline-block overflow-hidden pb-1 align-bottom">
+                <motion.span variants={wordRise} className="inline-block">
+                  {w}&nbsp;
+                </motion.span>
+              </span>
+            ))}
+            <span className="inline-block overflow-hidden pb-1 align-bottom">
+              <motion.span
+                aria-hidden
+                variants={wordRise}
+                className="inline-block"
+                animate={{ rotate: [0, 14, -8, 14, 0] }}
+                transition={{ duration: 1.6, repeat: Infinity, repeatDelay: 2.5 }}
+              >
+                👋
+              </motion.span>
+            </span>
           </motion.h1>
 
           <motion.p
@@ -96,12 +108,14 @@ export default function Hero({ profile }: { profile: Profile }) {
             >
               Download CV ↓
             </motion.a>
+            {/* Zolt style: white pill with an accent dot, not a dark fill */}
             <motion.a
               href="/contact"
               whileHover={{ scale: 1.04 }}
               whileTap={{ scale: 0.96 }}
-              className="rounded-full bg-ink px-6 py-3 text-sm font-semibold text-cream shadow-lg shadow-black/10 dark:bg-accent dark:text-white"
+              className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-6 py-3 text-sm font-semibold text-ink shadow-sm dark:border-night-line dark:bg-night-card dark:text-[#eaf2f8]"
             >
+              <span className="h-2.5 w-2.5 rounded-full bg-accent" />
               Let&apos;s connect →
             </motion.a>
           </motion.div>

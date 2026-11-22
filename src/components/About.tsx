@@ -19,7 +19,7 @@ export default function About({
 }) {
   const edu = education[0];
   return (
-    <section id="about" className="scroll-mt-24 py-14 md:py-20">
+    <section id="about" className="scroll-mt-24 border-t border-line py-20 md:py-24 dark:border-night-line">
       <div className="mx-auto max-w-[980px] px-5 md:px-8">
         <SectionHeading label="About me" title="The person behind the pixels" />
         <motion.div
@@ -73,7 +73,7 @@ export default function About({
           <motion.article
             variants={fadeUp}
             whileHover={{ y: -4 }}
-            className="rounded-3xl border border-line bg-ink p-6 text-cream shadow-sm dark:border-night-line dark:bg-night-card"
+            className="flex flex-col justify-center rounded-3xl border border-line bg-ink p-6 text-cream shadow-sm dark:border-night-line dark:bg-night-card"
           >
             <div className="flex items-center justify-between">
               <p className="text-sm font-semibold text-accent">Currently</p>
@@ -101,7 +101,7 @@ export default function About({
           <motion.article
             variants={fadeUp}
             whileHover={{ y: -4 }}
-            className="relative overflow-hidden rounded-3xl border border-line bg-card p-6 shadow-sm dark:border-night-line dark:bg-night-card"
+            className="relative flex flex-col justify-center overflow-hidden rounded-3xl border border-line bg-card p-6 shadow-sm dark:border-night-line dark:bg-night-card"
           >
             <div aria-hidden className="absolute inset-0 opacity-40 [background-image:linear-gradient(#c9dcec_1px,transparent_1px),linear-gradient(90deg,#c9dcec_1px,transparent_1px)] [background-size:28px_28px] dark:opacity-20" />
             <div className="relative">
