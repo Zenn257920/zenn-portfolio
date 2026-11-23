@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import type { Profile } from "@/lib/types";
+import { Quote } from "lucide-react";
 import { stagger, fadeUp, wordStagger, wordRise } from "@/components/Reveal";
 
 const GREETINGS = ["Mingalaba", "Hello", "Hola"];
@@ -50,38 +51,31 @@ export default function Hero({ profile }: { profile: Profile }) {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.35 }}
-                className="inline-block"
+                className="inline-flex items-center gap-2"
               >
-                {GREETINGS[greet]} 👋
+                {GREETINGS[greet]}
+                <Quote className="h-5 w-5 text-accent" aria-hidden />
               </motion.span>
             </AnimatePresence>
           </motion.p>
 
-          {/* H1 — words rise one by one, like Zolt's staggered intro.
-              pr on mobile keeps the lines clear of the hanging badge, which
-              sits top-right beside the heading; full width again from md. */}
+          {/* H1 — display name "I am Zenn" (brand/alias; the real name
+              Kaung Htet Zan Thar stays in the footer, About and DB
+              profile). Words rise one by one, like Zolt's staggered
+              intro. The hanging badge sits top-right beside the heading;
+              pr keeps the lines clear of it on mobile, full width again
+              from md. */}
           <motion.h1
             variants={wordStagger}
             className="mt-2 pr-[150px] font-display text-5xl font-bold leading-[0.95] tracking-tight text-ink sm:text-6xl md:pr-0 md:text-7xl dark:text-[#F0F0F0]"
           >
-            {["I", "am", "Kaung"].map((w) => (
+            {["I", "am", "Zenn"].map((w) => (
               <span key={w} className="inline-block overflow-hidden pb-1 align-bottom">
                 <motion.span variants={wordRise} className="inline-block">
                   {w}&nbsp;
                 </motion.span>
               </span>
             ))}
-            <span className="inline-block overflow-hidden pb-1 align-bottom">
-              <motion.span
-                aria-hidden
-                variants={wordRise}
-                className="inline-block"
-                animate={{ rotate: [0, 14, -8, 14, 0] }}
-                transition={{ duration: 1.6, repeat: Infinity, repeatDelay: 2.5 }}
-              >
-                👋
-              </motion.span>
-            </span>
           </motion.h1>
 
           <motion.p
