@@ -37,6 +37,8 @@ export type Project = {
   description: string | null;
   highlight: string | null;
   tech: string | null;
+  demo_url: string | null;
+  source_url: string | null;
   sort_order: number;
 };
 

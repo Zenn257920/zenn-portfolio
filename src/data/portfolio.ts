@@ -215,6 +215,8 @@ export const fallbackPortfolio: PortfolioData = {
       "description": "A Core Insurance System for managing insurance applications and data. I developed and maintained responsive, user-friendly interfaces using React and TypeScript, building reusable components for the system’s screens and workflows. I integrated REST APIs to retrieve, submit, and manage application data, so the information on screen always reflected what the system held.",
       "highlight": "Insurance workflows rebuilt as responsive, easy-to-use screens",
       "tech": "React, TypeScript, REST APIs, Tailwind CSS",
+      "demo_url": null,
+      "source_url": null,
       "sort_order": 1
     },
     {
@@ -225,6 +227,8 @@ export const fallbackPortfolio: PortfolioData = {
       "description": "An admin panel for customer care teams to look up, update, and manage customer information. I developed and maintained a responsive, user-friendly interface using React and TypeScript, with reusable components for lists, forms, and detail screens. I integrated REST APIs to retrieve, submit, and manage application data, and used React Hook Form with Zod for validated forms.",
       "highlight": "Admin workflows for support teams, with validated forms and API-driven data",
       "tech": "React, TypeScript, REST APIs, React Hook Form, Zod",
+      "demo_url": null,
+      "source_url": null,
       "sort_order": 2
     },
     {
@@ -235,7 +239,45 @@ export const fallbackPortfolio: PortfolioData = {
       "description": "This portfolio website — my own site, built to show my work and skills. I built it with Next.js 15, React, and TypeScript, styled with Tailwind CSS and animated with Framer Motion. The content lives in a Neon PostgreSQL database and is fetched live on every visit, the source is on GitHub, and the site is deployed on Vercel.",
       "highlight": "Live data from Neon PostgreSQL, deployed on Vercel",
       "tech": "Next.js, React, TypeScript, Tailwind CSS, Framer Motion, Neon PostgreSQL",
+      "demo_url": null,
+      "source_url": "https://github.com/Zenn257920/zenn-portfolio",
       "sort_order": 3
+    },
+    {
+      "id": 4,
+      "title": "Smart Ride — Shared Ride App",
+      "role": "Frontend Developer",
+      "period": "Innovix SharedRide Myanmar",
+      "description": "A production carpool app built with Next.js 15, React, TypeScript and Tailwind CSS — 11 pages and 27 API routes. Riders search and book rides, drivers offer rides and manage them from a dashboard, and passengers can request a shared ride. A real server database (Neon PostgreSQL + Drizzle) keeps riders and drivers in sync across phones, with Better Auth login, separate passenger and driver accounts, a wallet with manual top-up and cash, and Leaflet maps.",
+      "highlight": "Fair-split pricing: shared fares split by route segment, driver paid only when a ride is accepted",
+      "tech": "Next.js, React, TypeScript, Tailwind CSS, Neon PostgreSQL, Drizzle, Better Auth, Leaflet",
+      "demo_url": "https://smart-ride-app-eight.vercel.app/",
+      "source_url": "https://github.com/Zenn257920/smart-ride-app",
+      "sort_order": 4
+    },
+    {
+      "id": 5,
+      "title": "Expense Tracker",
+      "role": "Frontend Developer",
+      "period": "Personal Project",
+      "description": "A personal finance dashboard for tracking income and expenses by category, with a dashboard, six-month chart, transaction search and filters, categories, loans and CSV export. The standout feature is Burmese voice entry: speak in Burmese or English, and a local parser understands Burmese digits, number words like five thousand and one lakh, categories and dates, then fills in the amount, type, category and date for review before saving. Data lives in Neon PostgreSQL via Drizzle, with Better Auth login and Yangon-time dates.",
+      "highlight": "Burmese voice transactions — speak and the form fills itself, no typing",
+      "tech": "Next.js, React, TypeScript, Tailwind CSS, Neon PostgreSQL, Drizzle, Better Auth",
+      "demo_url": "https://expense-tracker.vercel.app/",
+      "source_url": "https://github.com/Zenn257920/expense-tracker",
+      "sort_order": 5
+    },
+    {
+      "id": 6,
+      "title": "We Talk — Real-time Chat App",
+      "role": "Frontend Developer",
+      "period": "Personal Project",
+      "description": "A real-time chat app for friends. Sign up with email and password or Google, add friends, then chat 1:1 or in groups — no public rooms, friends only. Messages, photos, voice messages, reactions, replies and edits sync live, with typing indicators, presence, push notifications that work when the app is closed, and a Together counter on private chats. Built as an Android app with Capacitor from the same Next.js codebase, backed by Neon PostgreSQL.",
+      "highlight": "Friends-only 1:1 and group chat with live sync and closed-app push notifications",
+      "tech": "Next.js, React, TypeScript, Tailwind CSS, Neon PostgreSQL, Drizzle, Better Auth, Firebase FCM, Capacitor",
+      "demo_url": "https://couple-chat-umber.vercel.app/",
+      "source_url": "https://github.com/Zenn257920/couple-chat",
+      "sort_order": 6
     }
   ],
   "services": [

@@ -44,6 +44,8 @@ CREATE TABLE IF NOT EXISTS projects (
   description TEXT,
   highlight TEXT,
   tech TEXT,
+  demo_url TEXT,
+  source_url TEXT,
   sort_order INT DEFAULT 0
 );
 
