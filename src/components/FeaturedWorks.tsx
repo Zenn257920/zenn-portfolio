@@ -1,8 +1,17 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 import type { Project } from "@/lib/types";
 import { SectionHeading, stagger, fadeUp } from "@/components/Reveal";
+
+// Real screenshots the user sent from his own apps (public/projects/).
+// Any project without an entry here keeps the DashboardMock below.
+const PROJECT_IMAGES: Record<string, string> = {
+  "Smart Ride — Shared Ride App": "/projects/smart-ride.jpg",
+  "Expense Tracker": "/projects/expense-tracker.jpg",
+  "We Talk — Real-time Chat App": "/projects/we-talk.jpg",
+};
 
 // Crisp flat vector dashboard mock — the fix for Zolt's washed-out,
 // illegible laptop screenshots: a solid flat background, large legible
@@ -189,9 +198,22 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
                 ) : null}
               </div>
             );
+            const imageSrc = PROJECT_IMAGES[p.title];
             const mock = (
               <div className={`min-w-0 p-3 transition-transform duration-500 group-hover:scale-[1.02] md:p-6 ${reversed ? "md:pr-0" : "md:pl-0"}`}>
-                <DashboardMock title={p.title} variant={i % 2} stackLabel={stackLabel} />
+                {imageSrc ? (
+                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-cream-deep shadow-sm dark:border-night-line dark:bg-night">
+                    <Image
+                      src={imageSrc}
+                      alt={`${p.title} — real screenshot`}
+                      fill
+                      className="object-cover object-center"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
+                ) : (
+                  <DashboardMock title={p.title} variant={i % 2} stackLabel={stackLabel} />
+                )}
               </div>
             );
             return (
