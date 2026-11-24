@@ -11,11 +11,44 @@ const PROJECT_IMAGES: Record<string, string> = {
   "Smart Ride — Shared Ride App": "/projects/smart-ride.jpg",
   "Expense Tracker": "/projects/expense-tracker.jpg",
   "We Talk — Real-time Chat App": "/projects/we-talk.jpg",
+  "Personal Portfolio": "/projects/portfolio.jpg",
 };
 
 // Crisp flat vector dashboard mock — the fix for Zolt's washed-out,
 // illegible laptop screenshots: a solid flat background, large legible
 // labels, big animated bars, no tiny text and no blur or noise.
+// Browser-window frame shared by the mock and the real screenshots —
+// outer cream border, three dots and the project domain, so every card
+// looks the same whether it shows a screenshot or the mock.
+function BrowserFrame({
+  title,
+  decorative = false,
+  children,
+}: {
+  title: string;
+  decorative?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <div
+      aria-hidden={decorative || undefined}
+      className="relative overflow-hidden rounded-2xl border border-line bg-cream-deep p-3 dark:border-night-line dark:bg-night md:p-4"
+    >
+      <div className="overflow-hidden rounded-xl border border-line bg-card shadow-sm dark:border-night-line dark:bg-night-card">
+        <div className="flex items-center gap-2 border-b border-line bg-cream px-4 py-2.5 dark:border-night-line dark:bg-night">
+          <span className="h-3 w-3 rounded-full bg-[#FF5C00]" />
+          <span className="h-3 w-3 rounded-full bg-[#FF8A50]" />
+          <span className="h-3 w-3 rounded-full bg-[#A3A3A3]" />
+          <span className="ml-2 truncate font-mono text-xs font-semibold text-ink-faint dark:text-[#A3A3A3]">
+            {title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.app
+          </span>
+        </div>
+        {children}
+      </div>
+    </div>
+  );
+}
+
 export function DashboardMock({
   title,
   variant = 0,
@@ -32,17 +65,8 @@ export function DashboardMock({
     { label: "Activity", sub: "Latest updates" },
   ];
   return (
-    <div aria-hidden className="relative overflow-hidden rounded-2xl border border-line bg-cream-deep p-3 dark:border-night-line dark:bg-night md:p-4">
-      <div className="overflow-hidden rounded-xl border border-line bg-card shadow-sm dark:border-night-line dark:bg-night-card">
-        <div className="flex items-center gap-2 border-b border-line bg-cream px-4 py-2.5 dark:border-night-line dark:bg-night">
-          <span className="h-3 w-3 rounded-full bg-[#FF5C00]" />
-          <span className="h-3 w-3 rounded-full bg-[#FF8A50]" />
-          <span className="h-3 w-3 rounded-full bg-[#A3A3A3]" />
-          <span className="ml-2 truncate font-mono text-xs font-semibold text-ink-faint dark:text-[#A3A3A3]">
-            {title.toLowerCase().replace(/[^a-z0-9]+/g, "-")}.app
-          </span>
-        </div>
-        <div className="p-3 md:p-4">
+    <BrowserFrame title={title} decorative>
+      <div className="p-3 md:p-4">
           <div className="grid grid-cols-3 gap-2 md:gap-3">
             {tiles.map((t, i) => (
               <div key={t.label} className="min-w-0 rounded-lg bg-cream px-2 py-2 dark:bg-night md:px-3 md:py-2.5">
@@ -69,9 +93,8 @@ export function DashboardMock({
             <span className="text-xs font-semibold text-ink-faint dark:text-[#A3A3A3]">● Live data</span>
             <span className="text-xs font-bold text-accent">{stackLabel}</span>
           </div>
-        </div>
       </div>
-    </div>
+    </BrowserFrame>
   );
 }
 
@@ -202,15 +225,17 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
             const mock = (
               <div className={`min-w-0 p-3 transition-transform duration-500 group-hover:scale-[1.02] md:p-6 ${reversed ? "md:pr-0" : "md:pl-0"}`}>
                 {imageSrc ? (
-                  <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border border-line bg-cream-deep shadow-sm dark:border-night-line dark:bg-night">
-                    <Image
-                      src={imageSrc}
-                      alt={`${p.title} — real screenshot`}
-                      fill
-                      className="object-cover object-center"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
+                  <BrowserFrame title={p.title}>
+                    <div className="relative aspect-[4/3] w-full">
+                      <Image
+                        src={imageSrc}
+                        alt={`${p.title} — real screenshot`}
+                        fill
+                        className="object-cover object-center"
+                        sizes="(max-width: 768px) 100vw, 50vw"
+                      />
+                    </div>
+                  </BrowserFrame>
                 ) : (
                   <DashboardMock title={p.title} variant={i % 2} stackLabel={stackLabel} />
                 )}
