@@ -7,11 +7,12 @@ import { SectionHeading, stagger, fadeUp } from "@/components/Reveal";
 
 // Real screenshots the user sent from his own apps (public/projects/).
 // Any project without an entry here keeps the DashboardMock below.
-const PROJECT_IMAGES: Record<string, string> = {
-  "Smart Ride — Shared Ride App": "/projects/smart-ride.jpg",
-  "Expense Tracker": "/projects/expense-tracker.jpg",
-  "We Talk — Real-time Chat App": "/projects/we-talk.jpg",
-  "Personal Portfolio": "/projects/portfolio.jpg",
+const PROJECT_IMAGES: Record<string, { src: string; width: number; height: number; cover?: boolean }> = {
+  "Smart Ride — Shared Ride App": { src: "/projects/smart-ride.jpg", width: 800, height: 383 },
+  "Expense Tracker": { src: "/projects/expense-tracker.jpg", width: 800, height: 387 },
+  // Portrait splash — keep the 4:3 cover crop (logo + title sit in the middle).
+  "We Talk — Real-time Chat App": { src: "/projects/we-talk.jpg", width: 590, height: 1280, cover: true },
+  "Personal Portfolio": { src: "/projects/portfolio.jpg", width: 800, height: 381 },
 };
 
 // Crisp flat vector dashboard mock — the fix for Zolt's washed-out,
@@ -248,20 +249,31 @@ export default function FeaturedWorks({ projects }: { projects: Project[] }) {
                 ) : null}
               </div>
             );
-            const imageSrc = PROJECT_IMAGES[p.title];
+            const image = PROJECT_IMAGES[p.title];
             const mock = (
               <div className={`min-w-0 p-3 transition-transform duration-500 group-hover:scale-[1.02] md:p-6 ${reversed ? "md:pr-0" : "md:pl-0"}`}>
-                {imageSrc ? (
+                {image ? (
                   <BrowserFrame title={p.title}>
-                    <div className="relative aspect-[4/3] w-full">
+                    {image.cover ? (
+                      <div className="relative aspect-[4/3] w-full">
+                        <Image
+                          src={image.src}
+                          alt={`${p.title} — real screenshot`}
+                          fill
+                          className="object-cover object-center"
+                          sizes="(max-width: 768px) 100vw, 50vw"
+                        />
+                      </div>
+                    ) : (
                       <Image
-                        src={imageSrc}
+                        src={image.src}
                         alt={`${p.title} — real screenshot`}
-                        fill
-                        className="object-cover object-center"
+                        width={image.width}
+                        height={image.height}
+                        className="h-auto w-full"
                         sizes="(max-width: 768px) 100vw, 50vw"
                       />
-                    </div>
+                    )}
                   </BrowserFrame>
                 ) : (
                   <DashboardMock
