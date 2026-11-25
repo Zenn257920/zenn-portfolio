@@ -131,6 +131,27 @@ function headlineFor(role: string) {
   return HEADLINES.Junior;
 }
 
+// Award icon for the View certificate button (Lucide award).
+function AwardIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden
+      className="text-accent"
+    >
+      <circle cx="12" cy="8" r="6" />
+      <path d="M15.477 12.89 17 22l-5-3-5 3 1.523-9.11" />
+    </svg>
+  );
+}
+
 export default function StacksExperience({
   skills,
   experience,
@@ -244,6 +265,19 @@ export default function StacksExperience({
                           </span>
                         ))}
                     </div>
+                    {/intern/i.test(e.role) ? (
+                      <div className="mt-5 border-t border-line pt-5 dark:border-night-line">
+                        <a
+                          href="/certificates/internship.pdf"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 rounded-full border border-line bg-white px-5 py-2.5 text-sm font-semibold text-ink shadow-sm transition-transform hover:scale-[1.03] dark:border-night-line dark:bg-night-card dark:text-[#F0F0F0]"
+                        >
+                          <AwardIcon />
+                          View certificate
+                        </a>
+                      </div>
+                    ) : null}
                   </div>
                 </motion.li>
               );
